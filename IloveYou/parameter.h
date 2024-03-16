@@ -11,11 +11,8 @@
 const int SCREEN_WIDTH = 1440;
 const int SCREEN_HEIGHT = 810;
 
-static SDL_Window* gWindow = NULL;
-static SDL_Renderer* gRenderer = NULL;
-static SDL_Texture* gBackgroundTexture = NULL;
-static SDL_Texture* gCardTexture = NULL;
 
+static SDL_Texture* gBackgroundTexture = NULL;
 
 const int SHAKE_DURATION_SUMMON = 2000;
 

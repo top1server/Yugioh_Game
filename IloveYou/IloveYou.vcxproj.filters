@@ -18,25 +18,22 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="parameter.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="texture.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="cursor.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="initSDL.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="music.cpp">
+    <ClCompile Include="MusicGame.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="graph.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="GameMenu.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowGame.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundGame.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,10 +47,7 @@
     <ClInclude Include="cursor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="initSDL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="music.h">
+    <ClInclude Include="MusicGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="graph.h">
@@ -63,6 +57,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

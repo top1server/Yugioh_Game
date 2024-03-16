@@ -140,21 +140,21 @@
     <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="graph.cpp" />
     <ClCompile Include="cursor.cpp" />
-    <ClCompile Include="initSDL.cpp" />
-    <ClCompile Include="texture.cpp" />
+    <ClCompile Include="SoundGame.cpp" />
+    <ClCompile Include="WindowGame.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="music.cpp" />
-    <ClCompile Include="parameter.cpp" />
+    <ClCompile Include="MusicGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="graph.h" />
     <ClInclude Include="collision.h" />
     <ClInclude Include="cursor.h" />
-    <ClInclude Include="initSDL.h" />
+    <ClInclude Include="SoundGame.h" />
     <ClInclude Include="texture.h" />
-    <ClInclude Include="music.h" />
+    <ClInclude Include="MusicGame.h" />
     <ClInclude Include="parameter.h" />
+    <ClInclude Include="WindowGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

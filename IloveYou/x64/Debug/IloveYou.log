@@ -1,3 +1,2 @@
-﻿  GameMenu.cpp
-A:\IloveYou\IloveYou\GameMenu.cpp(14,50): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  IloveYou.vcxproj -> A:\IloveYou\x64\Debug\IloveYou.exe
+﻿  main.cpp
+  IloveYou.vcxproj -> C:\IloveYou\x64\Debug\IloveYou.exe

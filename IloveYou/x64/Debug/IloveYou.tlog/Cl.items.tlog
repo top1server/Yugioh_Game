@@ -1,8 +1,7 @@
-A:\IloveYou\IloveYou\GameMenu.cpp;A:\IloveYou\IloveYou\x64\Debug\GameMenu.obj
-A:\IloveYou\IloveYou\graph.cpp;A:\IloveYou\IloveYou\x64\Debug\graph.obj
-A:\IloveYou\IloveYou\cursor.cpp;A:\IloveYou\IloveYou\x64\Debug\cursor.obj
-A:\IloveYou\IloveYou\initSDL.cpp;A:\IloveYou\IloveYou\x64\Debug\initSDL.obj
-A:\IloveYou\IloveYou\texture.cpp;A:\IloveYou\IloveYou\x64\Debug\texture.obj
-A:\IloveYou\IloveYou\main.cpp;A:\IloveYou\IloveYou\x64\Debug\main.obj
-A:\IloveYou\IloveYou\music.cpp;A:\IloveYou\IloveYou\x64\Debug\music.obj
-A:\IloveYou\IloveYou\parameter.cpp;A:\IloveYou\IloveYou\x64\Debug\parameter.obj
+C:\IloveYou\IloveYou\GameMenu.cpp;C:\IloveYou\IloveYou\x64\Debug\GameMenu.obj
+C:\IloveYou\IloveYou\graph.cpp;C:\IloveYou\IloveYou\x64\Debug\graph.obj
+C:\IloveYou\IloveYou\cursor.cpp;C:\IloveYou\IloveYou\x64\Debug\cursor.obj
+C:\IloveYou\IloveYou\SoundGame.cpp;C:\IloveYou\IloveYou\x64\Debug\SoundGame.obj
+C:\IloveYou\IloveYou\WindowGame.cpp;C:\IloveYou\IloveYou\x64\Debug\WindowGame.obj
+C:\IloveYou\IloveYou\main.cpp;C:\IloveYou\IloveYou\x64\Debug\main.obj
+C:\IloveYou\IloveYou\MusicGame.cpp;C:\IloveYou\IloveYou\x64\Debug\MusicGame.obj
