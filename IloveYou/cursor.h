@@ -14,17 +14,16 @@ public:
 	
 	SDL_Surface* cursorSurfaceDefault;
 	SDL_Cursor* cursorDefault;
-	SDL_Surface* cursorSurfaceCustom;
-	SDL_Cursor* cursorCustom;
+	
 	int curX, curY;
 
 	cursor();
 	~cursor();
 
-	void SetImage(const std::string& path1 ,const std::string& path2);
+	void SetImage(const std::string& path);
 	void GetPositionOfCursor();
 	void DrawCursor();
-	void ChangeImage();
+	void ChangeImage(const std::string& path);
 
 	SDL_bool IsCursorInRect(const SDL_Rect* rect);
 	SDL_bool isCursorCollidingWithTexture(SDL_Renderer* renderer, SDL_Texture* texture);
