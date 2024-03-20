@@ -22,6 +22,7 @@ public:
     void Pause();
     void Stop();
     void ChangeVolumeSound(int volume);
+    Mix_Chunk* GetSound() const { return gChunk; }
 };
 
 

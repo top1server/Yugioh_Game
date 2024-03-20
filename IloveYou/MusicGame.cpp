@@ -1,20 +1,22 @@
 #include "MusicGame.h"
 
-MusicGame::MusicGame() {
+MusicGame::MusicGame() 
+{
     gRepeatMusic = false;
     gVolumeMusic = 100;
     gStateMusic = stateMusic::STOP;
-    gMusic = nullptr;
+    gMusic = NULL;
 }
 
 MusicGame::~MusicGame() {
     Stop(); 
 }
 
-void MusicGame::SetMusic(const std::string& l) {
-    gMusic = Mix_LoadMUS(l.c_str());
-    if (gMusic == nullptr) {
-        std::cerr << "Error: Failed to load music file: " << l << " Error: " << Mix_GetError() << std::endl;
+void MusicGame::SetMusic(const std::string& path) {
+    gMusic = Mix_LoadMUS(path.c_str());
+    if (gMusic == NULL) {
+        std::cerr << "Error: Failed to load music file: " << path << " Error: " << Mix_GetError() << std::endl;
+        return;
     }
 }
 
@@ -23,9 +25,10 @@ void MusicGame::SetRepeat() {
 }
 
 void MusicGame::Play() {
-    if (gMusic != nullptr) {
+    if (gMusic != NULL) {
         if (Mix_PlayMusic(gMusic, gRepeatMusic ? -1 : 0) == -1) {
             std::cerr << "Error: Failed to play music! Error: " << Mix_GetError() << std::endl;
+            return;
         }
         else {
             gStateMusic = stateMusic::PLAY;

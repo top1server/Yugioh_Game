@@ -1,60 +1,77 @@
-#include "cursor.h"
+#include "Cursor.h"
 
-cursor::cursor() {
+Cursor::Cursor() 
+{
     curX = 0;
     curY = 0;
-    cursorSurfaceDefault = NULL;
-    cursorDefault = NULL;
+    CursorSurfaceDefault = NULL;
+    CursorDefault = NULL;
 }
 
-cursor::~cursor() 
+Cursor::~Cursor()
 {
-    if (cursorDefault)
-        SDL_FreeCursor(cursorDefault);
-    if (cursorSurfaceDefault)
-        SDL_FreeSurface(cursorSurfaceDefault);
+    if (CursorDefault)
+    {
+        SDL_FreeCursor(CursorDefault);
+        CursorDefault = NULL;
+    }
+        
+    if (CursorSurfaceDefault)
+    {
+        SDL_FreeSurface(CursorSurfaceDefault);
+        CursorSurfaceDefault = NULL;
+    }
 }
 
-void cursor::SetImage(const std::string& path1) {
-    cursorSurfaceDefault = IMG_Load(path1.c_str());
-    if (!cursorSurfaceDefault) {
-        printf("Failed to load default cursor image! SDL_image Error: %s\n", IMG_GetError());
+void Cursor::SetImage(const std::string& path) 
+{
+    CursorSurfaceDefault = IMG_Load(path.c_str());
+    if (CursorSurfaceDefault == NULL) 
+    {
+        printf("Failed to load default Cursor image! SDL_image Error: %s\n", IMG_GetError());
         return;
     }
-    
+
 }
 
-void cursor::DrawCursor() {
-    if (!cursorSurfaceDefault) {
+void Cursor::DrawCursor() 
+{
+    if (CursorSurfaceDefault == NULL) 
+    {
         std::cerr << "Cursor images not loaded! SDL_Error: " << SDL_GetError() << std::endl;
         return;
     }
-    cursorDefault = SDL_CreateColorCursor(cursorSurfaceDefault, 0, 0);
-    if (!cursorDefault) {
-        std::cerr << "Failed to create default cursor! SDL_Error: " << SDL_GetError() << std::endl;
+    CursorDefault = SDL_CreateColorCursor(CursorSurfaceDefault, 0, 0);
+    if (CursorDefault == NULL) 
+    {
+        std::cerr << "Failed to create default Cursor! SDL_Error: " << SDL_GetError() << std::endl;
+        CursorSurfaceDefault = NULL;
         return;
     }
-    SDL_SetCursor(cursorDefault);
+    SDL_SetCursor(CursorDefault);
+    //SDL_FreeCursor(CursorDefault);
+    //SDL_FreeSurface(CursorSurfaceDefault);
 }
 
-void cursor::GetPositionOfCursor() 
+void Cursor::GetPositionOfCursor()
 {
     SDL_GetMouseState(&curX, &curY);
 }
 
-void cursor::ChangeImage(const std::string& path2) 
+void Cursor::ChangeImage(const std::string& path2)
 {
     SetImage(path2.c_str());
     DrawCursor();
 }
 
-SDL_bool cursor::IsCursorInRect(const SDL_Rect* rect) {
+SDL_bool Cursor::IsCursorInRect(const SDL_Rect* rect) 
+{
     GetPositionOfCursor();
     SDL_Point point = { curX, curY };
     return SDL_PointInRect(&point, rect);
 }
 
-SDL_bool cursor::isCursorCollidingWithTexture(SDL_Renderer* renderer, SDL_Texture* texture)
+SDL_bool Cursor::isCursorCollidingWithTexture(SDL_Renderer* renderer, SDL_Texture* texture)
 {
     GetPositionOfCursor();
     int textureWidth, textureHeight;
@@ -73,3 +90,4 @@ SDL_bool cursor::isCursorCollidingWithTexture(SDL_Renderer* renderer, SDL_Textur
         return SDL_FALSE;
     }
 }
+

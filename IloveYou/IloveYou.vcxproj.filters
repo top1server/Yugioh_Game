@@ -18,7 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cursor.cpp">
+    <ClCompile Include="Cursor.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="MusicGame.cpp">
@@ -27,7 +27,7 @@
     <ClCompile Include="graph.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameMenu.cpp">
+    <ClCompile Include="MenuGame.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="WindowGame.cpp">
@@ -38,13 +38,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="parameter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cursor.h">
+    <ClInclude Include="Cursor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MusicGame.h">
@@ -56,7 +50,7 @@
     <ClInclude Include="collision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameMenu.h">
+    <ClInclude Include="MenuGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WindowGame.h">

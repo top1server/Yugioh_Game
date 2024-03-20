@@ -32,5 +32,6 @@ public:
     void ChangeVolume(int volume);
     void Continue();
     stateMusic GetStateMusic();
+    Mix_Music* GetMusic()const { return gMusic; }
 };
 #endif

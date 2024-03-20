@@ -7,7 +7,7 @@ SoundGame::SoundGame() {
 }
 
 SoundGame::~SoundGame() {
-    if (gChunk != nullptr) {
+    if (gChunk != NULL) {
         Mix_FreeChunk(gChunk);
         gChunk = NULL;
     }
@@ -17,6 +17,7 @@ void SoundGame::SetSoundBuffer(const std::string& path) {
     gChunk = Mix_LoadWAV(path.c_str());
     if (gChunk == NULL) {
         std::cerr << "Error: Failed to load sound file: " << path << " Error: " << Mix_GetError() << std::endl;
+        return;
     }
 }
 

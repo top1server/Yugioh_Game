@@ -8,17 +8,15 @@
 
 #include <iostream>
 
-class cursor
+class Cursor
 {
+private:
+	SDL_Surface* CursorSurfaceDefault;
+	SDL_Cursor* CursorDefault;
 public:
-	
-	SDL_Surface* cursorSurfaceDefault;
-	SDL_Cursor* cursorDefault;
-	
 	int curX, curY;
-
-	cursor();
-	~cursor();
+	Cursor();
+	~Cursor();
 
 	void SetImage(const std::string& path);
 	void GetPositionOfCursor();
@@ -27,6 +25,7 @@ public:
 
 	SDL_bool IsCursorInRect(const SDL_Rect* rect);
 	SDL_bool isCursorCollidingWithTexture(SDL_Renderer* renderer, SDL_Texture* texture);
+	
 
 };
 #endif
