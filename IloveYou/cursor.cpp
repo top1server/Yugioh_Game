@@ -55,9 +55,13 @@ void Cursor::DrawCursor()
 
 void Cursor::GetPositionOfCursor()
 {
-    SDL_GetMouseState(&curX, &curY);
+    if (UpdateCursor) SDL_GetMouseState(&curX, &curY);
+    else return;
 }
-
+void Cursor::NoUpdate()
+{
+    UpdateCursor = false;
+}
 void Cursor::ChangeImage(const std::string& path2)
 {
     SetImage(path2.c_str());

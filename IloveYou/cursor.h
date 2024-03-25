@@ -17,12 +17,12 @@ public:
 	int curX, curY;
 	Cursor();
 	~Cursor();
-
+	bool UpdateCursor = true;
 	void SetImage(const std::string& path);
 	void GetPositionOfCursor();
 	void DrawCursor();
 	void ChangeImage(const std::string& path);
-
+	void NoUpdate();
 	SDL_bool IsCursorInRect(const SDL_Rect* rect);
 	SDL_bool isCursorCollidingWithTexture(SDL_Renderer* renderer, SDL_Texture* texture);
 	

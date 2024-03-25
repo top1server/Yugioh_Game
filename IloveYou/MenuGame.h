@@ -5,7 +5,7 @@
 #include "SoundGame.h"
 #include "MusicGame.h"
 #include "Cursor.h"
-
+#include <thread>
 
 
 #include <SDL.h>
@@ -16,17 +16,27 @@
 
 enum class ModeGame
 {
-    P1vsP2,
-    PvsCPU,
-    WAIT
+    WAIT,
+    PvP,
+    PvE,
+    SHOP
 };
 
 enum class StateMenu
 {
     WAIT,
-    PLAY_GAME,
+    DUEL_MODE,
+    CARD_CONSTRUCTION,
+    CARD_LIST,
     OPTION_GAME,
-    EXIT_GAME
+    QUIT_GAME
+};
+
+enum class TypeInputCursor
+{
+    LEFT_CURSOR,
+    RIGHT_CURSOR,
+    WAIT_CURSOR
 };
 
 struct Volume
@@ -42,9 +52,10 @@ public:
     ~MenuGame();
     void RunCursorAndMusicAndSound();
     StateMenu InitiationMenu();
-    void HandleInput();
+    void CursorInput();
     void Render();
     void Cleanup();
+    bool isSoundPlayed = false;
     SDL_Texture* LoadTexture(const char* path)
     {
         SDL_Surface* surface = IMG_Load(path);
@@ -71,6 +82,7 @@ private:
     SoundGame gSoundMenu;
     StateMenu gStateGameMenu;
     ModeGame gModeGameMenu;
+    TypeInputCursor gTypeInput;
 };
 
 #endif
