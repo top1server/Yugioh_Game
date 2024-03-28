@@ -1,3 +1,2 @@
 ﻿  main.cpp
-C:\IloveYou\IloveYou\main.cpp(67,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   IloveYou.vcxproj -> C:\IloveYou\x64\Debug\IloveYou.exe

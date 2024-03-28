@@ -204,8 +204,7 @@ StateMenu MenuGame::InitiationMenu()
             if (gCursorMenu.IsCursorInRect(&PvPRect) == SDL_TRUE)
             {
                 SDL_Texture* PvP1 = LoadTexture("images/menu/pvp2.jpg");
-                SDL_Rect PvP1rect = { 630 , 0 , 200 , 400 };
-                gWindowGameMenu.Draw(PvP1, &PvP1rect);
+                
             }
         }
         gWindowGameMenu.EndDraw();

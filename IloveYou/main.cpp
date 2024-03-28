@@ -1,97 +1,119 @@
 ﻿#include <SDL.h>
 #include <SDL_image.h>
-#include <stdio.h>
+#include <iostream>
 
-// Kích thước cửa sổ
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1440;
+const int SCREEN_HEIGHT = 810;
+const int SPRITE_WIDTH = 1440; // Chiều rộng của mỗi frame
+const int SPRITE_HEIGHT = 810; // Chiều cao của mỗi frame
+const int ROWS = 10; // Số dòng
+const int COLUMNS = 8; // Số cột
+const int TOTAL_FRAMES = ROWS * COLUMNS;
+const int FRAME_DELAY = 100; // Độ trễ giữa các frame (ms)
 
-// Vị trí đích
-const int DEST_X = 200;
-const int DEST_Y = 200;
+SDL_Window* gWindow = nullptr;
+SDL_Renderer* gRenderer = nullptr;
+SDL_Texture* gSpriteSheet = nullptr;
 
-// Hàm chính
-int main(int argc, char* args[]) {
-    // Khởi tạo SDL và kiểm tra lỗi
+bool init() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-        return 1;
+        std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
+        return false;
     }
 
-    // Tạo cửa sổ
-    SDL_Window* window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-    if (window == NULL) {
-        printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-        return 1;
+    gWindow = SDL_CreateWindow("SDL Animation", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    if (gWindow == nullptr) {
+        std::cerr << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl;
+        return false;
     }
 
-    // Tạo renderer
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if (renderer == NULL) {
-        printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
-        return 1;
+    gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    if (gRenderer == nullptr) {
+        std::cerr << "Renderer could not be created! SDL_Error: " << SDL_GetError() << std::endl;
+        return false;
     }
 
-    // Tải hình ảnh lên texture
-    SDL_Surface* surface = IMG_Load("images/menu/pvp.png");
-    if (surface == NULL) {
-        printf("Unable to load image! SDL_image Error: %s\n", IMG_GetError());
-        return 1;
-    }
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-    SDL_FreeSurface(surface);
-    if (texture == NULL) {
-        printf("Texture could not be created! SDL_Error: %s\n", SDL_GetError());
-        return 1;
+    SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+
+    int imgFlags = IMG_INIT_PNG;
+    if (!(IMG_Init(imgFlags) & imgFlags)) {
+        std::cerr << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << std::endl;
+        return false;
     }
 
-    // Vị trí ban đầu của texture
-    SDL_Rect textureRect = { 200, 0, 100, 100 }; // Vị trí và kích thước texture ban đầu
+    return true;
+}
 
-    // Vòng lặp chính
-    int quit = 0;
+bool loadMedia() {
+    SDL_Surface* loadedSurface = IMG_Load("images//background.png");
+    if (loadedSurface == nullptr) {
+        std::cerr << "Unable to load image! SDL Error: " << SDL_GetError() << std::endl;
+        return false;
+    }
+
+    gSpriteSheet = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
+    if (gSpriteSheet == nullptr) {
+        std::cerr << "Unable to create texture from image! SDL Error: " << SDL_GetError() << std::endl;
+        return false;
+    }
+
+    SDL_FreeSurface(loadedSurface);
+    return true;
+}
+
+void close() {
+    SDL_DestroyTexture(gSpriteSheet);
+    SDL_DestroyRenderer(gRenderer);
+    SDL_DestroyWindow(gWindow);
+    IMG_Quit();
+    SDL_Quit();
+}
+
+int main(int argc, char* args[]) {
+    if (!init()) {
+        std::cerr << "Failed to initialize!" << std::endl;
+        return -1;
+    }
+
+    if (!loadMedia()) {
+        std::cerr << "Failed to load media!" << std::endl;
+        return -1;
+    }
+
+    SDL_Event e;
+    bool quit = false;
+    int frame = 0;
+    SDL_Rect clipRect;
+
     while (!quit) {
-        SDL_Event e;
         while (SDL_PollEvent(&e) != 0) {
             if (e.type == SDL_QUIT) {
-                quit = 1;
+                quit = true;
             }
         }
 
-        // Xóa renderer
-        SDL_RenderClear(renderer);
+        // Clear the screen
+        SDL_RenderClear(gRenderer);
 
-        // Tính toán khoảng cách từ vị trí hiện tại đến vị trí đích
-        int dx = DEST_X - textureRect.x;
-        int dy = DEST_Y - textureRect.y;
-        int distance = sqrt(dx * dx + dy * dy);
+        // Set the clip rectangle to the current frame
+        clipRect.x = (frame % COLUMNS) * SPRITE_WIDTH;
+        clipRect.y = (frame / COLUMNS) * SPRITE_HEIGHT;
+        clipRect.w = SPRITE_WIDTH;
+        clipRect.h = SPRITE_HEIGHT;
 
-        // Nếu chưa đến vị trí đích, di chuyển texture
-        if (distance > 1) { // Sử dụng 1 pixel làm ngưỡng dừng lại
-            // Tính toán bước di chuyển
-            float stepX = dx / (float)distance;
-            float stepY = dy / (float)distance;
+        // Render the current frame
+        SDL_RenderCopy(gRenderer, gSpriteSheet, &clipRect, NULL);
 
-            // Cập nhật vị trí của texture
-            textureRect.x += (int)(stepX * 2); // Điều chỉnh tốc độ di chuyển bằng cách thay đổi hằng số 2
-            textureRect.y += (int)(stepY * 2); // Điều chỉnh tốc độ di chuyển bằng cách thay đổi hằng số 2
-        }
+        // Update the screen
+        SDL_RenderPresent(gRenderer);
 
-        // Vẽ texture
-        SDL_RenderCopy(renderer, texture, NULL, &textureRect);
+        // Go to the next frame
+        frame = (frame + 1) % TOTAL_FRAMES;
 
-        // Cập nhật cửa sổ
-        SDL_RenderPresent(renderer);
-
-        // Đợi một chút để giảm tốc độ di chuyển
-        SDL_Delay(2);
+        // Delay to control frame rate
+        SDL_Delay(FRAME_DELAY);
     }
 
-    // Giải phóng bộ nhớ và thoát SDL
-    SDL_DestroyTexture(texture);
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-
+    close();
     return 0;
 }

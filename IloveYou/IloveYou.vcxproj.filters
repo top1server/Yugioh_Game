@@ -24,9 +24,6 @@
     <ClCompile Include="MusicGame.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="graph.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="MenuGame.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
@@ -36,15 +33,15 @@
     <ClCompile Include="SoundGame.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cursor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MusicGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="graph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="collision.h">
@@ -57,6 +54,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SoundGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

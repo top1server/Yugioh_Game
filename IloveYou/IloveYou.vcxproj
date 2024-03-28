@@ -138,18 +138,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MenuGame.cpp" />
-    <ClCompile Include="graph.cpp" />
     <ClCompile Include="Cursor.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="SoundGame.cpp" />
     <ClCompile Include="WindowGame.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MusicGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Card.h" />
     <ClInclude Include="MenuGame.h" />
-    <ClInclude Include="graph.h" />
     <ClInclude Include="collision.h" />
     <ClInclude Include="Cursor.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="SoundGame.h" />
     <ClInclude Include="MusicGame.h" />
     <ClInclude Include="WindowGame.h" />
