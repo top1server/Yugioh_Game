@@ -1,2 +1,5 @@
-﻿  main.cpp
+﻿  MenuGame.cpp
+C:\IloveYou\IloveYou\MenuGame.cpp(347,30): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\MenuGame.cpp(363,30): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\MenuGame.cpp(380,30): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   IloveYou.vcxproj -> C:\IloveYou\x64\Debug\IloveYou.exe

@@ -5,8 +5,6 @@
 #include "SoundGame.h"
 #include "MusicGame.h"
 #include "Cursor.h"
-#include <thread>
-
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -26,7 +24,7 @@ enum class StateMenu
 {
     WAIT,
     DUEL_MODE,
-    CARD_CONSTRUCTION,
+    DECK_CONSTRUCTION,
     CARD_LIST,
     OPTION_GAME,
     QUIT_GAME
@@ -51,11 +49,42 @@ public:
     MenuGame();
     ~MenuGame();
     void RunCursorAndMusicAndSound();
-    StateMenu InitiationMenu();
+    ModeGame InitiationMenu();
     void CursorInput();
     void Render();
     void Cleanup();
-    bool isSoundPlayed = false;
+    SDL_Texture* PvP2;
+    SDL_Rect PvP2Rect;
+    SDL_Texture* PvE2;
+    SDL_Rect PvE2Rect;
+    SDL_Texture* Shop2;
+    SDL_Rect Shop2Rect;
+    void AnimationPvP()
+    {
+        PvP2 = LoadTexture("images/menu/pvp2.png");
+        PvP2Rect.w = 220;
+        PvP2Rect.h = 400;
+        PvP2Rect.x = (1440 - PvP2Rect.w) / 2;
+        PvP2Rect.y = -400;
+    }
+    void AnimationPvE()
+    {
+        PvE2 = LoadTexture("images/menu/pve2.png");
+        PvE2Rect.w = 220;
+        PvE2Rect.h = 400;
+        PvE2Rect.x = 220;
+        PvE2Rect.y = -400;
+    }
+    void AnimationShop()
+    {
+        Shop2 = LoadTexture("images/menu/shop2.png");
+        Shop2Rect.w = 220;
+        Shop2Rect.h = 400;
+        Shop2Rect.x = 970;
+        Shop2Rect.y = -400;
+    }
+    int isSoundPlayed = 0;
+    int isChangedCursor = 0;
     SDL_Texture* LoadTexture(const char* path)
     {
         SDL_Surface* surface = IMG_Load(path);
@@ -65,7 +94,6 @@ public:
             return nullptr;
         }
 
-        // Tạo texture từ surface
         SDL_Texture* texture = SDL_CreateTextureFromSurface(gWindowGameMenu.GetRenderer(), surface);
         if (!texture)
         {
@@ -74,7 +102,14 @@ public:
         SDL_FreeSurface(surface);
         return texture;
     }
+    
 private:
+    const int DEST_X = 610;
+    const int DEST_Y = 230;
+    const int DEST_X1 = 220;
+    const int DEST_Y1 = 230;
+    const int DEST_X2 = 970;
+    const int DEST_Y2 = 230;
     WindowGame gWindowGameMenu;
     Volume gVolumeMenu;
     Cursor gCursorMenu;

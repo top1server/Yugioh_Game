@@ -33,7 +33,7 @@
     <ClCompile Include="SoundGame.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rectangle.cpp">
+    <ClCompile Include="Start.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,10 +56,7 @@
     <ClInclude Include="SoundGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Card.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rectangle.h">
+    <ClInclude Include="Start.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

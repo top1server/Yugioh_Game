@@ -6,24 +6,40 @@ Cursor::Cursor()
     curY = 0;
     CursorSurfaceDefault = NULL;
     CursorDefault = NULL;
+    CursorSurfaceCustom = NULL;
+    CursorCustom = NULL;
 }
 
-Cursor::~Cursor()
+void Cursor::CleanCursorCustom()
 {
-    if (CursorDefault)
+    if (CursorCustom)
     {
-        SDL_FreeCursor(CursorDefault);
-        CursorDefault = NULL;
+        SDL_FreeCursor(CursorCustom);
+        CursorCustom = NULL;
     }
-        
-    if (CursorSurfaceDefault)
+
+    if (CursorSurfaceCustom)
     {
-        SDL_FreeSurface(CursorSurfaceDefault);
-        CursorSurfaceDefault = NULL;
+        SDL_FreeSurface(CursorSurfaceCustom);
+        CursorSurfaceCustom = NULL;
     }
 }
+void Cursor::CleanCursorDefault()
+{
+        if (CursorDefault)
+        {
+            SDL_FreeCursor(CursorDefault);
+            CursorCustom = NULL;
+        }
 
-void Cursor::SetImage(const std::string& path) 
+        if (CursorSurfaceDefault)
+        {
+            SDL_FreeSurface(CursorSurfaceDefault);
+            CursorSurfaceDefault = NULL;
+        }
+}
+
+void Cursor::SetImageDefault(const std::string& path) 
 {
     CursorSurfaceDefault = IMG_Load(path.c_str());
     if (CursorSurfaceDefault == NULL) 
@@ -31,14 +47,23 @@ void Cursor::SetImage(const std::string& path)
         printf("Failed to load default Cursor image! SDL_image Error: %s\n", IMG_GetError());
         return;
     }
+}
+void Cursor::SetImageCustom(const std::string& path)
+{
+    CursorSurfaceCustom = IMG_Load(path.c_str());
+    if (CursorSurfaceCustom == NULL)
+    {
+        printf("Failed to load custom Cursor image! SDL_image Error: %s\n", IMG_GetError());
+        return;
+    }
 
 }
 
-void Cursor::DrawCursor() 
+void Cursor::DrawCursorDefault() 
 {
     if (CursorSurfaceDefault == NULL) 
     {
-        std::cerr << "Cursor images not loaded! SDL_Error: " << SDL_GetError() << std::endl;
+        std::cerr << "Cursor images Default not loaded! SDL_Error: " << SDL_GetError() << std::endl;
         return;
     }
     CursorDefault = SDL_CreateColorCursor(CursorSurfaceDefault, 0, 0);
@@ -49,8 +74,23 @@ void Cursor::DrawCursor()
         return;
     }
     SDL_SetCursor(CursorDefault);
-    //SDL_FreeCursor(CursorDefault);
-    //SDL_FreeSurface(CursorSurfaceDefault);
+}
+
+void Cursor::DrawCursorCustom()
+{
+    if (CursorSurfaceCustom == NULL)
+    {
+        std::cerr << "Cursor images custom not loaded! SDL_Error: " << SDL_GetError() << std::endl;
+        return;
+    }
+    CursorCustom = SDL_CreateColorCursor(CursorSurfaceCustom, 0, 0);
+    if (CursorCustom == NULL)
+    {
+        std::cerr << "Failed to create custom Cursor! SDL_Error: " << SDL_GetError() << std::endl;
+        CursorSurfaceCustom = NULL;
+        return;
+    }
+    SDL_SetCursor(CursorCustom);
 }
 
 void Cursor::GetPositionOfCursor()
@@ -64,8 +104,8 @@ void Cursor::NoUpdate()
 }
 void Cursor::ChangeImage(const std::string& path2)
 {
-    SetImage(path2.c_str());
-    DrawCursor();
+    SetImageDefault(path2.c_str());
+    DrawCursorDefault();
 }
 
 SDL_bool Cursor::IsCursorInRect(const SDL_Rect* rect) 

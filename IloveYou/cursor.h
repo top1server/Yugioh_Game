@@ -13,14 +13,19 @@ class Cursor
 private:
 	SDL_Surface* CursorSurfaceDefault;
 	SDL_Cursor* CursorDefault;
+	SDL_Surface* CursorSurfaceCustom;
+	SDL_Cursor* CursorCustom;
 public:
 	int curX, curY;
 	Cursor();
-	~Cursor();
+	void CleanCursorCustom();
+	void CleanCursorDefault();
 	bool UpdateCursor = true;
-	void SetImage(const std::string& path);
+	void SetImageDefault(const std::string& path);
+	void SetImageCustom(const std::string& path);
 	void GetPositionOfCursor();
-	void DrawCursor();
+	void DrawCursorDefault();
+	void DrawCursorCustom();
 	void ChangeImage(const std::string& path);
 	void NoUpdate();
 	SDL_bool IsCursorInRect(const SDL_Rect* rect);
