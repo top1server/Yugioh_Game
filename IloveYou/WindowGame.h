@@ -19,28 +19,25 @@ private:
     std::string gWindowTitle;
     bool gIsFullScreen;
     bool gIsDone;
-
 public:
     WindowGame();
     ~WindowGame();
-    void Destroy();                                     
+                                     
     void Create();                                      
     void SetUp(const std::string& title, int width, int height);   
     void BeginDraw();                                   
     void EndDraw();                                     
-    void Updata();
     bool IsDone();
+    void Destroy();
     bool IsFullScreen();                                
     void Draw(SDL_Texture* texture ,SDL_Rect* rect);                    
     SDL_Rect GetWindowSize();  
-    void SetWindowToNull() {
-        gWindow = nullptr;
-    }
-    void SetRendererToNull() {
-        gWindow = nullptr;
-    }
     SDL_Renderer* GetRenderer() const {return gRenderer;}
     SDL_Window* GetWindow() const { return gWindow; }
+    void DrawFull(SDL_Texture* texture, SDL_Rect *rect1, SDL_Rect* rect)
+    {
+        SDL_RenderCopy(gRenderer, texture, rect1, rect);
+    }
     void RendererClear();
 };
 

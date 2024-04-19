@@ -48,8 +48,12 @@ class MenuGame : WindowGame
 public:
     MenuGame();
     ~MenuGame();
-    void RunCursorAndMusicAndSound();
-    ModeGame InitiationMenu();
+    void RunCursorAndMusicAndSound1();
+    void RunCursorAndMusicAndSound2();
+    void RunCursorAndMusicAndSound3();
+    ModeGame InitiationMenuMode();
+    StateMenu InitiationMenuState();
+    void Deckconstruction();
     void CursorInput();
     void Render();
     void Cleanup();
@@ -61,7 +65,7 @@ public:
     SDL_Rect Shop2Rect;
     void AnimationPvP()
     {
-        PvP2 = LoadTexture("images/menu/pvp2.png");
+        PvP2 = IMG_LoadTexture(gWindowGameMenu2.GetRenderer(), "images/menu/pvp2.png");
         PvP2Rect.w = 220;
         PvP2Rect.h = 400;
         PvP2Rect.x = (1440 - PvP2Rect.w) / 2;
@@ -69,7 +73,7 @@ public:
     }
     void AnimationPvE()
     {
-        PvE2 = LoadTexture("images/menu/pve2.png");
+        PvE2 = IMG_LoadTexture(gWindowGameMenu2.GetRenderer(), "images/menu/pve2.png");
         PvE2Rect.w = 220;
         PvE2Rect.h = 400;
         PvE2Rect.x = 220;
@@ -77,7 +81,7 @@ public:
     }
     void AnimationShop()
     {
-        Shop2 = LoadTexture("images/menu/shop2.png");
+        Shop2 = IMG_LoadTexture(gWindowGameMenu2.GetRenderer(),"images/menu/shop2.png");
         Shop2Rect.w = 220;
         Shop2Rect.h = 400;
         Shop2Rect.x = 970;
@@ -85,32 +89,17 @@ public:
     }
     int isSoundPlayed = 0;
     int isChangedCursor = 0;
-    SDL_Texture* LoadTexture(const char* path)
-    {
-        SDL_Surface* surface = IMG_Load(path);
-        if (!surface)
-        {
-            std::cerr << "Failed to load image! Error :" << SDL_GetError() << std::endl;
-            return nullptr;
-        }
-
-        SDL_Texture* texture = SDL_CreateTextureFromSurface(gWindowGameMenu.GetRenderer(), surface);
-        if (!texture)
-        {
-            std::cerr << "Unable to create texture! Error: " << SDL_GetError() << std::endl;
-        }
-        SDL_FreeSurface(surface);
-        return texture;
-    }
     
 private:
     const int DEST_X = 610;
-    const int DEST_Y = 230;
+    const int DEST_Y = 220;
     const int DEST_X1 = 220;
-    const int DEST_Y1 = 230;
+    const int DEST_Y1 = 220;
     const int DEST_X2 = 970;
-    const int DEST_Y2 = 230;
-    WindowGame gWindowGameMenu;
+    const int DEST_Y2 = 220;
+    WindowGame gWindowGameMenu1;
+    WindowGame gWindowGameMenu2;
+    WindowGame gWindowGameMenu3;
     Volume gVolumeMenu;
     Cursor gCursorMenu;
     MusicGame gMusicMenu;

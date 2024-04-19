@@ -1,15 +1,22 @@
-﻿#include "MenuGame.h"
-#include "Start.h"
-int main(int argc , char* argv[])
+﻿#include "Start.h"
+#include "MenuGame.h"
+int main(int argc, char* argv[])
 {
 	MenuGame MENU;
-	if (MENU.InitiationMenu() == ModeGame::PvP)
+	StateMenu gState = MENU.InitiationMenuState();
+	if (gState == StateMenu::DUEL_MODE)
 	{
-		std::cout << "HHHH";
-		Start GAME;
-		GAME.StartAnimation();
+		ModeGame gMode = MENU.InitiationMenuMode();
+		Start gStart;
+		if (gMode == ModeGame::PvP)
+		{
+			gStart.StartAnimation();
+		}
 	}
-
-	MENU.Cleanup();
+	else if (gState == StateMenu::DECK_CONSTRUCTION)
+	{
+		MENU.Deckconstruction();
+	}
+	
 	return 0;
 }

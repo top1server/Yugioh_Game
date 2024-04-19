@@ -6,10 +6,10 @@ void Start::StartAnimation()
     const int SCREEN_HEIGHT = 810;
     const int SPRITE_WIDTH = 800;
     const int SPRITE_HEIGHT = 450;
-    const int ROWS = 15;
-    const int COLUMNS = 10;
-    const int TOTAL_FRAMES = 150;
-    const int FRAME_DELAY = 60;
+    const int ROWS = 10;
+    const int COLUMNS = 7;
+    const int TOTAL_FRAMES = 70;
+    const int FRAME_DELAY = 35;
     SDL_Texture* gSpriteSheet = nullptr;
     gStartGame.SetUp("MAGIC DUEL", 1440, 810);
     SDL_Surface* iconSurface = IMG_Load("images/icon/icon1.png");
@@ -22,21 +22,8 @@ void Start::StartAnimation()
     }
     SDL_SetWindowIcon(gStartGame.GetWindow(), iconSurface);
 
-    SDL_Surface* loadedSurface = IMG_Load("images//background.png");
-    if (loadedSurface == nullptr)
-    {
-        std::cerr << "Unable to load image! SDL Error: " << SDL_GetError() << std::endl;
-        return;
-    }
-
-    gSpriteSheet = SDL_CreateTextureFromSurface(gStartGame.GetRenderer(), loadedSurface);
-    if (gSpriteSheet == nullptr)
-    {
-        std::cerr << "Unable to create texture from image! SDL Error: " << SDL_GetError() << std::endl;
-        return;
-    }
-    SDL_FreeSurface(loadedSurface);
-
+    gSpriteSheet = IMG_LoadTexture(gStartGame.GetRenderer(), "images/bk.png");
+    
     SDL_Event e;
     bool quit = false;
     int frame = 0;
@@ -48,11 +35,8 @@ void Start::StartAnimation()
                 quit = true;
             }
         }
-
-        // Clear the screen
         SDL_RenderClear(gStartGame.GetRenderer());
 
-        // Set the clip rectangle to the current frame
         clipRect.x = (frame % COLUMNS) * SPRITE_WIDTH;
         clipRect.y = (frame / COLUMNS) * SPRITE_HEIGHT;
         clipRect.w = SPRITE_WIDTH;
@@ -61,13 +45,13 @@ void Start::StartAnimation()
         SDL_RenderCopy(gStartGame.GetRenderer(), gSpriteSheet, &clipRect, NULL);
         gStartGame.EndDraw();
         frame++;
-        //if (frame == 150) frame = 120;
+        if (frame == 71) gStartGame.Destroy();
         SDL_Delay(FRAME_DELAY);
     }
 }
 void Start::RunMusic()
 {
-    gStartMusic.SetMusic("musics/start1.mp3");
-    gStartMusic.SetRepeat();
+    gStartMusic.SetMusic("musics/start.mp3");
+    //gStartMusic.SetRepeat();
     gStartMusic.Play();
 }

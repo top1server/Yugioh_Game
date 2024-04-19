@@ -9,10 +9,7 @@ WindowGame::WindowGame()
     gIsFullScreen = false;
     gIsDone = false;
 }
-void WindowGame::Updata()
-{
 
-}
 void WindowGame::SetUp(const std::string& title, int SCREEN_WIDTH , int SCREEN_HEIGHT) 
 {
     gWindowTitle = title;
@@ -72,7 +69,7 @@ void WindowGame::Destroy()
 
 void WindowGame::BeginDraw() 
 {
-    SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
     SDL_RenderClear(gRenderer);
 }
 
@@ -100,9 +97,11 @@ void WindowGame::Draw(SDL_Texture* texture ,SDL_Rect* rect)
 {
     SDL_RenderCopy(gRenderer, texture, NULL, rect);
 }
+
+
 void WindowGame::RendererClear()
 {
-    SDL_RenderClear(gRenderer);
+    SDL_RenderClear(GetRenderer());
 }
 
 

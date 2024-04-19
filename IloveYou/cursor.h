@@ -30,7 +30,5 @@ public:
 	void NoUpdate();
 	SDL_bool IsCursorInRect(const SDL_Rect* rect);
 	SDL_bool isCursorCollidingWithTexture(SDL_Renderer* renderer, SDL_Texture* texture);
-	
-
 };
 #endif
