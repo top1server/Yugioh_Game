@@ -1,8 +1,2 @@
-﻿  MenuGame.cpp
-C:\IloveYou\IloveYou\MenuGame.cpp(448,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\MenuGame.cpp(465,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\MenuGame.cpp(482,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\MenuGame.cpp(576,73): warning C4129: 'y': unrecognized character escape sequence
-C:\IloveYou\IloveYou\MenuGame.cpp(542,1): warning C4715: 'MenuGame::InitiationMenuMode': not all control paths return a value
-C:\IloveYou\IloveYou\MenuGame.cpp(309,1): warning C4715: 'MenuGame::InitiationMenuState': not all control paths return a value
+﻿  Game.cpp
   IloveYou.vcxproj -> C:\IloveYou\x64\Debug\IloveYou.exe

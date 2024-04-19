@@ -57,39 +57,19 @@ public:
     void CursorInput();
     void Render();
     void Cleanup();
-    SDL_Texture* PvP2;
-    SDL_Rect PvP2Rect;
-    SDL_Texture* PvE2;
-    SDL_Rect PvE2Rect;
-    SDL_Texture* Shop2;
-    SDL_Rect Shop2Rect;
-    void AnimationPvP()
-    {
-        PvP2 = IMG_LoadTexture(gWindowGameMenu2.GetRenderer(), "images/menu/pvp2.png");
-        PvP2Rect.w = 220;
-        PvP2Rect.h = 400;
-        PvP2Rect.x = (1440 - PvP2Rect.w) / 2;
-        PvP2Rect.y = -400;
-    }
-    void AnimationPvE()
-    {
-        PvE2 = IMG_LoadTexture(gWindowGameMenu2.GetRenderer(), "images/menu/pve2.png");
-        PvE2Rect.w = 220;
-        PvE2Rect.h = 400;
-        PvE2Rect.x = 220;
-        PvE2Rect.y = -400;
-    }
-    void AnimationShop()
-    {
-        Shop2 = IMG_LoadTexture(gWindowGameMenu2.GetRenderer(),"images/menu/shop2.png");
-        Shop2Rect.w = 220;
-        Shop2Rect.h = 400;
-        Shop2Rect.x = 970;
-        Shop2Rect.y = -400;
-    }
+    
     int isSoundPlayed = 0;
     int isChangedCursor = 0;
-    
+    ModeGame GetModeGame()
+    {
+        return gModeGameMenu;
+    }
+
+    void SetVolumeGame(Volume& v)
+    {
+        v.Music = gVolumeMenu.Music;
+        v.Sound = gVolumeMenu.Sound;
+    }
 private:
     const int DEST_X = 610;
     const int DEST_Y = 220;

@@ -318,15 +318,36 @@ ModeGame MenuGame::InitiationMenuMode()
     bool s1PvP = false, s1PvE = false, s1Shop = false;
 
     RunCursorAndMusicAndSound2();
-    AnimationPvP();
-    AnimationPvE();
-    AnimationShop();
+
+    SDL_Texture* PvP2;
+    SDL_Rect PvP2Rect;
+    SDL_Texture* PvE2;
+    SDL_Rect PvE2Rect;
+    SDL_Texture* Shop2;
+    SDL_Rect Shop2Rect;
+
+    PvP2 = IMG_LoadTexture(gWindowGameMenu2.GetRenderer(), "images/menu/pvp2.png");
+    PvP2Rect.w = 220;
+    PvP2Rect.h = 400;
+    PvP2Rect.x = (1440 - PvP2Rect.w) / 2;
+    PvP2Rect.y = -400;
+
+    PvE2 = IMG_LoadTexture(gWindowGameMenu2.GetRenderer(), "images/menu/pve2.png");
+    PvE2Rect.w = 220;
+    PvE2Rect.h = 400;
+    PvE2Rect.x = 220;
+    PvE2Rect.y = -400;
+
+    Shop2 = IMG_LoadTexture(gWindowGameMenu2.GetRenderer(), "images/menu/shop2.png");
+    Shop2Rect.w = 220;
+    Shop2Rect.h = 400;
+    Shop2Rect.x = 970;
+    Shop2Rect.y = -400;
 
     SDL_Texture* PvP = IMG_LoadTexture(gWindowGameMenu2.GetRenderer(),"images\\menu\\pvp.png");
     SDL_Texture* PvE = IMG_LoadTexture(gWindowGameMenu2.GetRenderer(), "images\\menu\\pve.png");
     SDL_Texture* Shop = IMG_LoadTexture(gWindowGameMenu2.GetRenderer(), "images\\menu\\shop.png");
     SDL_Texture* ChooseMode = IMG_LoadTexture(gWindowGameMenu2.GetRenderer(), "images/menu/CHOOSEMODE.png");
-    
     
     
     SDL_Rect ChooseModeRect;
@@ -502,7 +523,7 @@ ModeGame MenuGame::InitiationMenuMode()
             if (gTypeInput == TypeInputCursor::LEFT_CURSOR)
             {
                 gTypeInput = TypeInputCursor::WAIT_CURSOR;
-
+                gModeGameMenu = ModeGame::PvP;
 
                 gSoundMenu.Stop();
                 gWindowGameMenu2.Destroy();
@@ -523,6 +544,8 @@ ModeGame MenuGame::InitiationMenuMode()
                 gTypeInput = TypeInputCursor::WAIT_CURSOR;
                 gSoundMenu.Stop();
                 gWindowGameMenu2.Destroy();
+
+                gModeGameMenu = ModeGame::PvE;
                 return ModeGame::PvE;
             }
             SDL_DestroyTexture(PvE_D);
@@ -534,6 +557,8 @@ ModeGame MenuGame::InitiationMenuMode()
                 gTypeInput = TypeInputCursor::WAIT_CURSOR;
                 gSoundMenu.Stop();
                 gWindowGameMenu2.Destroy();
+                gModeGameMenu = ModeGame::SHOP;
+
                 return ModeGame::SHOP;
             }
         }
