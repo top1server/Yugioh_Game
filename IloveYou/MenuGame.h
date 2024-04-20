@@ -59,7 +59,7 @@ public:
     void Cleanup();
     
     int isSoundPlayed = 0;
-    int isChangedCursor = 0;
+ 
     ModeGame GetModeGame()
     {
         return gModeGameMenu;

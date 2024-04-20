@@ -1,22 +1,12 @@
-﻿#include "Start.h"
-#include "MenuGame.h"
+﻿
+#include "Game.h"
 int main(int argc, char* argv[])
 {
-	MenuGame MENU;
-	StateMenu gState = MENU.InitiationMenuState();
-	if (gState == StateMenu::DUEL_MODE)
+	Game GAME;
+	while (GAME.GetStateGame() != StateMenu::QUIT_GAME)
 	{
-		ModeGame gMode = MENU.InitiationMenuMode();
-		Start gStart;
-		if (gMode == ModeGame::PvP)
-		{
-			gStart.StartAnimation();
-		}
+		GAME.IntGame();
+		GAME.HandleInput();
 	}
-	else if (gState == StateMenu::DECK_CONSTRUCTION)
-	{
-		MENU.Deckconstruction();
-	}
-	
 	return 0;
 }

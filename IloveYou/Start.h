@@ -6,6 +6,12 @@
 #include "WindowGame.h"
 #include "MusicGame.h"
 
+const int SPRITE_WIDTH = 800;
+const int SPRITE_HEIGHT = 450;
+const int ROWS = 10;
+const int COLUMNS = 7;
+const int TOTAL_FRAMES = 69;
+const int FRAME_DELAY = 35;
 
 class Start :WindowGame
 {

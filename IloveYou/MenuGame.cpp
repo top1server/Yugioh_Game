@@ -2,6 +2,7 @@
 
 MenuGame::MenuGame()
 {
+
 }
 MenuGame::~MenuGame()
 {
@@ -11,7 +12,7 @@ MenuGame::~MenuGame()
 void MenuGame::RunCursorAndMusicAndSound2()
 {
     // Creat window and icon game
-    gWindowGameMenu2.SetUp("MAGIC DUEL", 1440, 810);
+    gWindowGameMenu2.SetUp("MAGIC DUEL", SCREEN_WIDTH, SCREEN_HEIGHT);
     SDL_Surface* iconSurface = IMG_Load("images/icon/icon1.png");
     SDL_SetWindowIcon(gWindowGameMenu2.GetWindow(), iconSurface);
 
@@ -21,7 +22,7 @@ void MenuGame::RunCursorAndMusicAndSound2()
     gMusicMenu.Play();
 
     // Load cursor click sound
-    gSoundMenu.SetSoundBuffer("musics//ClickCursor.mp3");
+    gSoundMenu.SetSoundBuffer("musics/sound.mp3");
     gSoundMenu.ChangeVolumeSound(45);
 
     // Cursor
@@ -33,7 +34,7 @@ void MenuGame::RunCursorAndMusicAndSound2()
 void MenuGame::RunCursorAndMusicAndSound1()
 {
     // Creat window and icon game
-    gWindowGameMenu1.SetUp("MAGIC DUEL", 1440, 810);
+    gWindowGameMenu1.SetUp("MAGIC DUEL", SCREEN_WIDTH, SCREEN_HEIGHT);
     SDL_Surface* iconSurface = IMG_Load("images/icon/icon1.png");
     SDL_SetWindowIcon(gWindowGameMenu1.GetWindow(), iconSurface);
 
@@ -55,9 +56,9 @@ void MenuGame::RunCursorAndMusicAndSound1()
 void MenuGame::RunCursorAndMusicAndSound3()
 {
     // Creat window and icon game
-    gWindowGameMenu3.SetUp("MAGIC DUEL", 1440, 810);
+    gWindowGameMenu3.SetUp("MAGIC DUEL", SCREEN_WIDTH, SCREEN_HEIGHT);
     SDL_Surface* iconSurface = IMG_Load("images/icon/icon1.png");
-    SDL_SetWindowIcon(gWindowGameMenu1.GetWindow(), iconSurface);
+    SDL_SetWindowIcon(gWindowGameMenu3.GetWindow(), iconSurface);
 
     // Load music menu
     gMusicMenu.SetMusic("musics//cardlist.mp3");
@@ -76,7 +77,7 @@ void MenuGame::RunCursorAndMusicAndSound3()
 StateMenu MenuGame::InitiationMenuState()
 {
     gVolumeMenu.Sound = 70;
-    gVolumeMenu.Music = 30;
+    gVolumeMenu.Music = 40;
     gStateGameMenu = StateMenu::WAIT;
 
     RunCursorAndMusicAndSound1();
@@ -117,194 +118,196 @@ StateMenu MenuGame::InitiationMenuState()
 
     QuitGameRect.x = (1440 - QuitGameRect.w) / 2;
     QuitGameRect.y = 620;
-
+    int isChangedCursor = 0;
+    SDL_Event e;
     while (gWindowGameMenu1.IsDone())
     {
-        CursorInput();
-
-        gWindowGameMenu1.RendererClear();
-        gWindowGameMenu1.Draw(gWallPaper, &WallPaperRect);
-        gWindowGameMenu1.Draw(gGameName, &GameNameRect);
-        gWindowGameMenu1.Draw(gDuelMode, &DuelModeRect);
-        gWindowGameMenu1.Draw(gDeckContruction, &DeckContructionRect);
-        gWindowGameMenu1.Draw(gCardList, &CardListRect);
-        gWindowGameMenu1.Draw(gOption, &OptionRect);
-        gWindowGameMenu1.Draw(gQuitGame, &QuitGameRect);
-
-        if (gCursorMenu.IsCursorInRect(&DuelModeRect) == SDL_TRUE)
+        while (SDL_PollEvent(&e) != 0)
         {
-            // Draw
-            if (!isChangedCursor || isChangedCursor == 2 || isChangedCursor == 3 || isChangedCursor == 4 || isChangedCursor == 5)
-            {
-                gCursorMenu.CleanCursorDefault();
-                gCursorMenu.SetImageCustom("images/mouse/cursor1.png");
-                gCursorMenu.DrawCursorCustom();
-                isChangedCursor = 1;
-            }
-            SDL_Texture* gDuelModeBig = IMG_LoadTexture(gWindowGameMenu1.GetRenderer(),"images/menu/DUELMODE_BIG.png");
-            SDL_Rect DuelModeBigRect;
-            SDL_QueryTexture(gDuelModeBig, NULL, NULL, &DuelModeBigRect.w, &DuelModeBigRect.h);
-            DuelModeBigRect.x = (1440 - DuelModeBigRect.w) / 2;
-            DuelModeBigRect.y = 300;
-            gWindowGameMenu1.Draw(gDuelModeBig, &DuelModeBigRect);
-            SDL_DestroyTexture(gDuelModeBig);
+            gWindowGameMenu1.RendererClear();
+            gWindowGameMenu1.Draw(gWallPaper, &WallPaperRect);
+            gWindowGameMenu1.Draw(gGameName, &GameNameRect);
+            gWindowGameMenu1.Draw(gDuelMode, &DuelModeRect);
+            gWindowGameMenu1.Draw(gDeckContruction, &DeckContructionRect);
+            gWindowGameMenu1.Draw(gCardList, &CardListRect);
+            gWindowGameMenu1.Draw(gOption, &OptionRect);
+            gWindowGameMenu1.Draw(gQuitGame, &QuitGameRect);
 
-            if (gTypeInput == TypeInputCursor::LEFT_CURSOR)
+            if (gCursorMenu.IsCursorInRect(&DuelModeRect) == SDL_TRUE)
             {
+                // Draw
+                if (!isChangedCursor || isChangedCursor == 2 || isChangedCursor == 3 || isChangedCursor == 4 || isChangedCursor == 5)
+                {
+                    gCursorMenu.CleanCursorDefault();
+                    gCursorMenu.SetImageCustom("images/mouse/cursor1.png");
+                    gCursorMenu.DrawCursorCustom();
+                    isChangedCursor = 1;
+                }
+                SDL_Texture* gDuelModeBig = IMG_LoadTexture(gWindowGameMenu1.GetRenderer(), "images/menu/DUELMODE_BIG.png");
+                SDL_Rect DuelModeBigRect;
+                SDL_QueryTexture(gDuelModeBig, NULL, NULL, &DuelModeBigRect.w, &DuelModeBigRect.h);
+                DuelModeBigRect.x = (1440 - DuelModeBigRect.w) / 2;
+                DuelModeBigRect.y = 300;
+                gWindowGameMenu1.Draw(gDuelModeBig, &DuelModeBigRect);
+                SDL_DestroyTexture(gDuelModeBig);
 
-                gTypeInput = TypeInputCursor::WAIT_CURSOR;
-                gMusicMenu.Stop();
-                gWindowGameMenu1.Destroy();
-                SDL_DestroyTexture(gWallPaper);
-                SDL_DestroyTexture(gGameName);
-                SDL_DestroyTexture(gDuelMode);
-                SDL_DestroyTexture(gDeckContruction);
-                SDL_DestroyTexture(gCardList);
-                SDL_DestroyTexture(gOption);
-                SDL_DestroyTexture(gQuitGame);
-                return StateMenu::DUEL_MODE;
+                if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
+                {
+
+                    //gTypeInput = TypeInputCursor::WAIT_CURSOR;
+                    gMusicMenu.Stop();
+                    gWindowGameMenu1.Destroy();
+                    SDL_DestroyTexture(gWallPaper);
+                    SDL_DestroyTexture(gGameName);
+                    SDL_DestroyTexture(gDuelMode);
+                    SDL_DestroyTexture(gDeckContruction);
+                    SDL_DestroyTexture(gCardList);
+                    SDL_DestroyTexture(gOption);
+                    SDL_DestroyTexture(gQuitGame);
+                    return StateMenu::DUEL_MODE;
+                }
             }
+
+            else if (gCursorMenu.IsCursorInRect(&DeckContructionRect) == SDL_TRUE)
+            {
+                if (!isChangedCursor || isChangedCursor == 1 || isChangedCursor == 3 || isChangedCursor == 4 || isChangedCursor == 5)
+                {
+                    gCursorMenu.CleanCursorDefault();
+                    gCursorMenu.SetImageCustom("images/mouse/cursor1.png");
+                    gCursorMenu.DrawCursorCustom();
+                    isChangedCursor = 2;
+                }
+
+                SDL_Texture* gDeckContructionBig = IMG_LoadTexture(gWindowGameMenu1.GetRenderer(), "images/menu/DECKCONTRUCTION_BIG.png");
+                SDL_Rect DeckContructionBigRect;
+                SDL_QueryTexture(gDeckContructionBig, NULL, NULL, &DeckContructionBigRect.w, &DeckContructionBigRect.h);
+                DeckContructionBigRect.x = (1440 - DeckContructionBigRect.w) / 2;
+                DeckContructionBigRect.y = 380;
+                gWindowGameMenu1.Draw(gDeckContructionBig, &DeckContructionBigRect);
+                SDL_DestroyTexture(gDeckContructionBig);
+
+                if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
+                {
+                    //gTypeInput = TypeInputCursor::WAIT_CURSOR;
+                    gMusicMenu.Stop();
+                    gWindowGameMenu1.Destroy();
+                    SDL_DestroyTexture(gWallPaper);
+                    SDL_DestroyTexture(gGameName);
+                    SDL_DestroyTexture(gDuelMode);
+                    SDL_DestroyTexture(gDeckContruction);
+                    SDL_DestroyTexture(gCardList);
+                    SDL_DestroyTexture(gOption);
+                    SDL_DestroyTexture(gQuitGame);
+                    return StateMenu::DECK_CONSTRUCTION;
+                }
+            }
+
+            else if (gCursorMenu.IsCursorInRect(&CardListRect) == SDL_TRUE)
+            {
+                if (!isChangedCursor || isChangedCursor == 1 || isChangedCursor == 2 || isChangedCursor == 4 || isChangedCursor == 5)
+                {
+                    gCursorMenu.CleanCursorDefault();
+                    gCursorMenu.SetImageCustom("images/mouse/cursor1.png");
+                    gCursorMenu.DrawCursorCustom();
+                    isChangedCursor = 3;
+                }
+                SDL_Texture* gCardListBig = IMG_LoadTexture(gWindowGameMenu1.GetRenderer(), "images/menu/CARDLIST_BIG.png");
+                SDL_Rect CardListBigRect;
+                SDL_QueryTexture(gCardListBig, NULL, NULL, &CardListBigRect.w, &CardListBigRect.h);
+                CardListBigRect.x = (1440 - CardListBigRect.w) / 2;
+                CardListBigRect.y = 460;
+                gWindowGameMenu1.Draw(gCardListBig, &CardListBigRect);
+                SDL_DestroyTexture(gCardListBig);
+                if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
+                {
+                    //gTypeInput = TypeInputCursor::WAIT_CURSOR;
+                    gMusicMenu.Stop();
+                    gWindowGameMenu1.Destroy();
+                    SDL_DestroyTexture(gWallPaper);
+                    SDL_DestroyTexture(gGameName);
+                    SDL_DestroyTexture(gDuelMode);
+                    SDL_DestroyTexture(gDeckContruction);
+                    SDL_DestroyTexture(gCardList);
+                    SDL_DestroyTexture(gOption);
+                    SDL_DestroyTexture(gQuitGame);
+                    return StateMenu::CARD_LIST;
+                }
+            }
+
+            else if (gCursorMenu.IsCursorInRect(&OptionRect) == SDL_TRUE)
+            {
+                if (!isChangedCursor || isChangedCursor == 1 || isChangedCursor == 2 || isChangedCursor == 3 || isChangedCursor == 5)
+                {
+                    gCursorMenu.CleanCursorDefault();
+                    gCursorMenu.SetImageCustom("images/mouse/cursor1.png");
+                    gCursorMenu.DrawCursorCustom();
+                    isChangedCursor = 4;
+                }
+                SDL_Texture* gOptionBig = IMG_LoadTexture(gWindowGameMenu1.GetRenderer(), "images/menu/OPTION_BIG.png");
+                SDL_Rect OptionBigRect;
+                SDL_QueryTexture(gOptionBig, NULL, NULL, &OptionBigRect.w, &OptionBigRect.h);
+                OptionBigRect.x = (1440 - OptionBigRect.w) / 2;
+                OptionBigRect.y = 540;
+                gWindowGameMenu1.Draw(gOptionBig, &OptionBigRect);
+                SDL_DestroyTexture(gOptionBig);
+                if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
+                {
+                    //gTypeInput = TypeInputCursor::WAIT_CURSOR;
+                    gMusicMenu.Stop();
+                    gWindowGameMenu1.Destroy();
+                    SDL_DestroyTexture(gWallPaper);
+                    SDL_DestroyTexture(gGameName);
+                    SDL_DestroyTexture(gDuelMode);
+                    SDL_DestroyTexture(gDeckContruction);
+                    SDL_DestroyTexture(gCardList);
+                    SDL_DestroyTexture(gOption);
+                    SDL_DestroyTexture(gQuitGame);
+                    return StateMenu::OPTION_GAME;
+                }
+            }
+            else if (gCursorMenu.IsCursorInRect(&QuitGameRect) == SDL_TRUE)
+            {
+                if (!isChangedCursor || isChangedCursor == 1 || isChangedCursor == 2 || isChangedCursor == 3 || isChangedCursor == 4)
+                {
+                    gCursorMenu.CleanCursorDefault();
+                    gCursorMenu.SetImageCustom("images/mouse/cursor1.png");
+                    gCursorMenu.DrawCursorCustom();
+                    isChangedCursor = 5;
+                }
+                SDL_Texture* gQuitGameBig = IMG_LoadTexture(gWindowGameMenu1.GetRenderer(), "images/menu/QUITGAME_BIG.png");
+                SDL_Rect QuitGameBigRect;
+                SDL_QueryTexture(gQuitGameBig, NULL, NULL, &QuitGameBigRect.w, &QuitGameBigRect.h);
+                QuitGameBigRect.x = (1440 - QuitGameBigRect.w) / 2;
+                QuitGameBigRect.y = 620;
+                gWindowGameMenu1.Draw(gQuitGameBig, &QuitGameBigRect);
+                SDL_DestroyTexture(gQuitGameBig);
+                if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
+                {
+                    //gTypeInput = TypeInputCursor::WAIT_CURSOR;
+                    gMusicMenu.Stop();
+                    gWindowGameMenu1.Destroy();
+                    SDL_DestroyTexture(gWallPaper);
+                    SDL_DestroyTexture(gGameName);
+                    SDL_DestroyTexture(gDuelMode);
+                    SDL_DestroyTexture(gDeckContruction);
+                    SDL_DestroyTexture(gCardList);
+                    SDL_DestroyTexture(gOption);
+                    SDL_DestroyTexture(gQuitGame);
+                    return StateMenu::QUIT_GAME;
+                }
+            }
+            else
+            {
+                if (isChangedCursor == 1 || isChangedCursor == 2 || isChangedCursor == 3 || isChangedCursor == 4 || isChangedCursor == 5)
+                {
+                    gCursorMenu.CleanCursorCustom();
+                    gCursorMenu.SetImageDefault("images/mouse/mouse1.png");
+                    gCursorMenu.DrawCursorDefault();
+                    isChangedCursor = 0;
+                }
+            }
+            gWindowGameMenu1.EndDraw();
         }
-
-        else if (gCursorMenu.IsCursorInRect(&DeckContructionRect) == SDL_TRUE)
-        {
-            if (!isChangedCursor || isChangedCursor == 1 || isChangedCursor == 3 || isChangedCursor == 4 || isChangedCursor == 5)
-            {
-                gCursorMenu.CleanCursorDefault();
-                gCursorMenu.SetImageCustom("images/mouse/cursor1.png");
-                gCursorMenu.DrawCursorCustom();
-                isChangedCursor = 2;
-            }
-
-            SDL_Texture* gDeckContructionBig = IMG_LoadTexture(gWindowGameMenu1.GetRenderer(),"images/menu/DECKCONTRUCTION_BIG.png");
-            SDL_Rect DeckContructionBigRect;
-            SDL_QueryTexture(gDeckContructionBig, NULL, NULL, &DeckContructionBigRect.w, &DeckContructionBigRect.h);
-            DeckContructionBigRect.x = (1440 - DeckContructionBigRect.w) / 2;
-            DeckContructionBigRect.y = 380;
-            gWindowGameMenu1.Draw(gDeckContructionBig, &DeckContructionBigRect);
-            SDL_DestroyTexture(gDeckContructionBig);
-
-            if (gTypeInput == TypeInputCursor::LEFT_CURSOR)
-            {
-                gTypeInput = TypeInputCursor::WAIT_CURSOR;
-                gMusicMenu.Stop();
-                gWindowGameMenu1.Destroy();
-                SDL_DestroyTexture(gWallPaper);
-                SDL_DestroyTexture(gGameName);
-                SDL_DestroyTexture(gDuelMode);
-                SDL_DestroyTexture(gDeckContruction);
-                SDL_DestroyTexture(gCardList);
-                SDL_DestroyTexture(gOption);
-                SDL_DestroyTexture(gQuitGame);
-                return StateMenu::DECK_CONSTRUCTION;
-            }
-        }
-
-        else if (gCursorMenu.IsCursorInRect(&CardListRect) == SDL_TRUE)
-        {
-            if (!isChangedCursor || isChangedCursor == 1 || isChangedCursor == 2 || isChangedCursor == 4 || isChangedCursor == 5)
-            {
-                gCursorMenu.CleanCursorDefault();
-                gCursorMenu.SetImageCustom("images/mouse/cursor1.png");
-                gCursorMenu.DrawCursorCustom();
-                isChangedCursor = 3;
-            }
-            SDL_Texture* gCardListBig = IMG_LoadTexture(gWindowGameMenu1.GetRenderer(),"images/menu/CARDLIST_BIG.png");
-            SDL_Rect CardListBigRect;
-            SDL_QueryTexture(gCardListBig, NULL, NULL, &CardListBigRect.w, &CardListBigRect.h);
-            CardListBigRect.x = (1440 - CardListBigRect.w) / 2;
-            CardListBigRect.y = 460;
-            gWindowGameMenu1.Draw(gCardListBig, &CardListBigRect);
-            SDL_DestroyTexture(gCardListBig);
-            if (gTypeInput == TypeInputCursor::LEFT_CURSOR)
-            {
-                gTypeInput = TypeInputCursor::WAIT_CURSOR;
-                gMusicMenu.Stop();
-                gWindowGameMenu1.Destroy();
-                SDL_DestroyTexture(gWallPaper);
-                SDL_DestroyTexture(gGameName);
-                SDL_DestroyTexture(gDuelMode);
-                SDL_DestroyTexture(gDeckContruction);
-                SDL_DestroyTexture(gCardList);
-                SDL_DestroyTexture(gOption);
-                SDL_DestroyTexture(gQuitGame);
-                return StateMenu::CARD_LIST;
-            }
-        }
-
-        else if (gCursorMenu.IsCursorInRect(&OptionRect) == SDL_TRUE)
-        {
-            if (!isChangedCursor || isChangedCursor == 1 || isChangedCursor == 2 || isChangedCursor == 3 || isChangedCursor == 5)
-            {
-                gCursorMenu.CleanCursorDefault();
-                gCursorMenu.SetImageCustom("images/mouse/cursor1.png");
-                gCursorMenu.DrawCursorCustom();
-                isChangedCursor = 4;
-            }
-            SDL_Texture* gOptionBig = IMG_LoadTexture(gWindowGameMenu1.GetRenderer(),"images/menu/OPTION_BIG.png");
-            SDL_Rect OptionBigRect;
-            SDL_QueryTexture(gOptionBig, NULL, NULL, &OptionBigRect.w, &OptionBigRect.h);
-            OptionBigRect.x = (1440 - OptionBigRect.w) / 2;
-            OptionBigRect.y = 540;
-            gWindowGameMenu1.Draw(gOptionBig, &OptionBigRect);
-            SDL_DestroyTexture(gOptionBig);
-            if (gTypeInput == TypeInputCursor::LEFT_CURSOR)
-            {
-                gTypeInput = TypeInputCursor::WAIT_CURSOR;
-                gMusicMenu.Stop();
-                gWindowGameMenu1.Destroy();
-                SDL_DestroyTexture(gWallPaper);
-                SDL_DestroyTexture(gGameName);
-                SDL_DestroyTexture(gDuelMode);
-                SDL_DestroyTexture(gDeckContruction);
-                SDL_DestroyTexture(gCardList);
-                SDL_DestroyTexture(gOption);
-                SDL_DestroyTexture(gQuitGame);
-                return StateMenu::OPTION_GAME;
-            }
-        }
-        else if (gCursorMenu.IsCursorInRect(&QuitGameRect) == SDL_TRUE)
-        {
-            if (!isChangedCursor || isChangedCursor == 1 || isChangedCursor == 2 || isChangedCursor == 3 || isChangedCursor == 4)
-            {
-                gCursorMenu.CleanCursorDefault();
-                gCursorMenu.SetImageCustom("images/mouse/cursor1.png");
-                gCursorMenu.DrawCursorCustom();
-                isChangedCursor = 5;
-            }
-            SDL_Texture* gQuitGameBig = IMG_LoadTexture(gWindowGameMenu1.GetRenderer(),"images/menu/QUITGAME_BIG.png");
-            SDL_Rect QuitGameBigRect;
-            SDL_QueryTexture(gQuitGameBig, NULL, NULL, &QuitGameBigRect.w, &QuitGameBigRect.h);
-            QuitGameBigRect.x = (1440 - QuitGameBigRect.w) / 2;
-            QuitGameBigRect.y = 620;
-            gWindowGameMenu1.Draw(gQuitGameBig, &QuitGameBigRect);
-            SDL_DestroyTexture(gQuitGameBig);
-            if (gTypeInput == TypeInputCursor::LEFT_CURSOR)
-            {
-                gTypeInput = TypeInputCursor::WAIT_CURSOR;
-                gMusicMenu.Stop();
-                gWindowGameMenu1.Destroy();
-                SDL_DestroyTexture(gWallPaper);
-                SDL_DestroyTexture(gGameName);
-                SDL_DestroyTexture(gDuelMode);
-                SDL_DestroyTexture(gDeckContruction);
-                SDL_DestroyTexture(gCardList);
-                SDL_DestroyTexture(gOption);
-                SDL_DestroyTexture(gQuitGame);
-                return StateMenu::QUIT_GAME;
-            }
-        }
-        else
-        {
-            if (isChangedCursor == 1 || isChangedCursor == 2 || isChangedCursor == 3 || isChangedCursor == 4 || isChangedCursor == 5)
-            {
-                gCursorMenu.CleanCursorCustom();
-                gCursorMenu.SetImageDefault("images/mouse/mouse1.png");
-                gCursorMenu.DrawCursorDefault();
-                isChangedCursor = 0;
-            }
-        }
-        gWindowGameMenu1.EndDraw();
     }
 }
 
@@ -671,7 +674,7 @@ void MenuGame::Deckconstruction()
                 JonouchiDeck = true;
             }
         }
-        else if (gCursorMenu.IsCursorInRect(&XRect))
+        else if (gCursorMenu.IsCursorInRect(&XRect)&& !YugiDeck && !KaibaDeck && !JonouchiDeck)
         {
             SDL_Texture* X = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images/Deck construction/x.png");
             SDL_QueryTexture(X, NULL, NULL, &XRect.w, &XRect.h);
@@ -703,6 +706,7 @@ void MenuGame::Deckconstruction()
 
             if (gCursorMenu.IsCursorInRect(&X1Rect))
             {
+                
                 gWindowGameMenu3.Draw(X1, &X1Rect);
                 SDL_DestroyTexture(X1);
             }
@@ -751,11 +755,9 @@ void MenuGame::Deckconstruction()
 
             }
             SDL_DestroyTexture(X1);
-
         }
         gWindowGameMenu3.EndDraw();
     }
-
 }
 
 void MenuGame::CursorInput()
