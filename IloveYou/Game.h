@@ -1,13 +1,17 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "WindowGame.h"
+#include <iostream>
+#include <vector>
+#include <stack>
+#include <algorithm>
+#include <random>
 #include <SDL.h>
 #include <SDL_image.h>
-#include <iostream>
+
+#include "WindowGame.h"
 #include "MenuGame.h"
 #include "Cursor.h"
-#include "WindowGame.h"
 #include "Start.h"
 
 enum class TurnPlayer
@@ -18,9 +22,11 @@ enum class TurnPlayer
 class Game
 {
 private:
-	StateMenu STATE;
+	WindowGame WINDOW;
 	TurnPlayer BeginPlayer;
 	TurnPlayer TurnPlayer;
+	StateMenu STATE;
+	ModeGame MODE;
 	MenuGame MENU;
 	SoundGame SOUND_ANIMATION;
 	SoundGame CLICK;
@@ -28,8 +34,6 @@ private:
 	MusicGame MUSIC_MENU;
 	MusicGame MUSIC_INGAME;
 	Cursor CURSOR;
-	ModeGame MODE;
-	WindowGame WINDOW;
 	Volume VOLUME;
 	Start START;
 

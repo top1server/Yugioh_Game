@@ -6,7 +6,7 @@ MenuGame::MenuGame()
 }
 MenuGame::~MenuGame()
 {
-    Cleanup();
+    Cleanup1();
 }
 
 void MenuGame::RunCursorAndMusicAndSound2()
@@ -120,6 +120,7 @@ StateMenu MenuGame::InitiationMenuState()
     QuitGameRect.y = 620;
     int isChangedCursor = 0;
     SDL_Event e;
+
     while (gWindowGameMenu1.IsDone())
     {
         while (SDL_PollEvent(&e) != 0)
@@ -155,8 +156,7 @@ StateMenu MenuGame::InitiationMenuState()
                 {
 
                     //gTypeInput = TypeInputCursor::WAIT_CURSOR;
-                    gMusicMenu.Stop();
-                    gWindowGameMenu1.Destroy();
+                    Cleanup1();
                     SDL_DestroyTexture(gWallPaper);
                     SDL_DestroyTexture(gGameName);
                     SDL_DestroyTexture(gDuelMode);
@@ -189,8 +189,7 @@ StateMenu MenuGame::InitiationMenuState()
                 if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
                 {
                     //gTypeInput = TypeInputCursor::WAIT_CURSOR;
-                    gMusicMenu.Stop();
-                    gWindowGameMenu1.Destroy();
+                    Cleanup1();
                     SDL_DestroyTexture(gWallPaper);
                     SDL_DestroyTexture(gGameName);
                     SDL_DestroyTexture(gDuelMode);
@@ -221,8 +220,7 @@ StateMenu MenuGame::InitiationMenuState()
                 if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
                 {
                     //gTypeInput = TypeInputCursor::WAIT_CURSOR;
-                    gMusicMenu.Stop();
-                    gWindowGameMenu1.Destroy();
+                    Cleanup1();
                     SDL_DestroyTexture(gWallPaper);
                     SDL_DestroyTexture(gGameName);
                     SDL_DestroyTexture(gDuelMode);
@@ -253,8 +251,7 @@ StateMenu MenuGame::InitiationMenuState()
                 if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
                 {
                     //gTypeInput = TypeInputCursor::WAIT_CURSOR;
-                    gMusicMenu.Stop();
-                    gWindowGameMenu1.Destroy();
+                    Cleanup1();
                     SDL_DestroyTexture(gWallPaper);
                     SDL_DestroyTexture(gGameName);
                     SDL_DestroyTexture(gDuelMode);
@@ -284,8 +281,7 @@ StateMenu MenuGame::InitiationMenuState()
                 if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
                 {
                     //gTypeInput = TypeInputCursor::WAIT_CURSOR;
-                    gMusicMenu.Stop();
-                    gWindowGameMenu1.Destroy();
+                    Cleanup1();
                     SDL_DestroyTexture(gWallPaper);
                     SDL_DestroyTexture(gGameName);
                     SDL_DestroyTexture(gDuelMode);
@@ -528,7 +524,6 @@ ModeGame MenuGame::InitiationMenuMode()
                 gTypeInput = TypeInputCursor::WAIT_CURSOR;
                 gModeGameMenu = ModeGame::PvP;
 
-                gSoundMenu.Stop();
                 gWindowGameMenu2.Destroy();
                 return ModeGame::PvP;
             }
@@ -545,8 +540,7 @@ ModeGame MenuGame::InitiationMenuMode()
             if (gTypeInput == TypeInputCursor::LEFT_CURSOR)
             {
                 gTypeInput = TypeInputCursor::WAIT_CURSOR;
-                gSoundMenu.Stop();
-                gWindowGameMenu2.Destroy();
+                Cleanup2();
 
                 gModeGameMenu = ModeGame::PvE;
                 return ModeGame::PvE;
@@ -558,8 +552,7 @@ ModeGame MenuGame::InitiationMenuMode()
             if (gTypeInput == TypeInputCursor::LEFT_CURSOR)
             {
                 gTypeInput = TypeInputCursor::WAIT_CURSOR;
-                gSoundMenu.Stop();
-                gWindowGameMenu2.Destroy();
+                Cleanup2();
                 gModeGameMenu = ModeGame::SHOP;
 
                 return ModeGame::SHOP;
@@ -573,8 +566,8 @@ void MenuGame::Deckconstruction()
 {
     bool IsPlayed = false;
     bool YugiDeck = false, KaibaDeck = false, JonouchiDeck = false;
-    gVolumeMenu.Sound = 70;
-    gVolumeMenu.Music = 30;
+    gVolumeMenu.Sound = 80;
+    gVolumeMenu.Music = 40;
 
     RunCursorAndMusicAndSound3();
     SDL_Texture* DCMenu = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images\\Deck construction\\dc.jpg");
@@ -684,10 +677,8 @@ void MenuGame::Deckconstruction()
             if (gTypeInput == TypeInputCursor::LEFT_CURSOR)
             {
                 gTypeInput = TypeInputCursor::WAIT_CURSOR;
-                gWindowGameMenu3.Destroy();
-                gMusicMenu.Stop();
-                gSoundMenu.Stop();
-                return;
+                Cleanup3();
+                
             }
         }
         if (KaibaDeck)
@@ -706,9 +697,8 @@ void MenuGame::Deckconstruction()
 
             if (gCursorMenu.IsCursorInRect(&X1Rect))
             {
-                
                 gWindowGameMenu3.Draw(X1, &X1Rect);
-                SDL_DestroyTexture(X1);
+                //SDL_DestroyTexture(X1);
             }
             gWindowGameMenu3.EndDraw();
 
@@ -719,8 +709,7 @@ void MenuGame::Deckconstruction()
                     
                     if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
                     {
-                        gMusicMenu.Stop();
-                        gWindowGameMenu3.Destroy();
+                        Cleanup3();
                         InitiationMenuMode();
                     }
                 }
@@ -796,7 +785,7 @@ void MenuGame::Render()
     gWindowGameMenu1.EndDraw();
 }
 
-void MenuGame::Cleanup()
+void MenuGame::Cleanup1()
 {
     gCursorMenu.~Cursor();
     gSoundMenu.~SoundGame();
@@ -805,5 +794,27 @@ void MenuGame::Cleanup()
 
     IMG_Quit();
     Mix_Quit();
-    SDL_Quit();
+    //SDL_Quit();
+}
+void MenuGame::Cleanup2()
+{
+    gCursorMenu.~Cursor();
+    gSoundMenu.~SoundGame();
+    gMusicMenu.~MusicGame();
+    gWindowGameMenu2.~WindowGame();
+
+    IMG_Quit();
+    Mix_Quit();
+    //SDL_Quit();
+}
+void MenuGame::Cleanup3()
+{
+    gCursorMenu.~Cursor();
+    gSoundMenu.~SoundGame();
+    gMusicMenu.~MusicGame();
+    gWindowGameMenu3.~WindowGame();
+
+    IMG_Quit();
+    Mix_Quit();
+    //SDL_Quit();
 }

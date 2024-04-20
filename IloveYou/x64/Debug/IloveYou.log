@@ -1,13 +1,3 @@
 ﻿  Game.cpp
-C:\IloveYou\IloveYou\Game.cpp(79,12): warning C4101: 'e': unreferenced local variable
-C:\IloveYou\IloveYou\Game.cpp(121,12): warning C4101: 'e': unreferenced local variable
-  MenuGame.cpp
-C:\IloveYou\IloveYou\MenuGame.cpp(472,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\MenuGame.cpp(489,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\MenuGame.cpp(506,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\MenuGame.cpp(604,73): warning C4129: 'y': unrecognized character escape sequence
-  main.cpp
-  Generating Code...
-C:\IloveYou\IloveYou\MenuGame.cpp(312,1): warning C4715: 'MenuGame::InitiationMenuState': not all control paths return a value
-C:\IloveYou\IloveYou\MenuGame.cpp(570,1): warning C4715: 'MenuGame::InitiationMenuMode': not all control paths return a value
+C:\IloveYou\IloveYou\Game.cpp(107,12): warning C4101: 'e': unreferenced local variable
   IloveYou.vcxproj -> C:\IloveYou\x64\Debug\IloveYou.exe

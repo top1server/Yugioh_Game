@@ -18,6 +18,7 @@ class Start :WindowGame
 private:
 	WindowGame gStartGame;
 	MusicGame gStartMusic;
+	SDL_Texture* gSpriteSheet;
 public:
 	bool isPlayMusic = false;
 	void RunMusic();

@@ -73,10 +73,9 @@ void Game::CreateGame1()
 {
 	START.StartAnimation();
 
-	WINDOW.SetUp("DUEL", SCREEN_WIDTH, SCREEN_HEIGHT);
+	WINDOW.SetUp("MAGIC DUEL", SCREEN_WIDTH, SCREEN_HEIGHT);
 	SDL_Surface* iconSurface = IMG_Load("images/icon/icon1.png");
 	SDL_SetWindowIcon(WINDOW.GetWindow(), iconSurface);
-	SDL_Event e;
 
 	SDL_Texture* Card1 = IMG_LoadTexture(WINDOW.GetRenderer(), "images/Yugi/phu thuy ao den.png");
 	SDL_Texture* Card2 = IMG_LoadTexture(WINDOW.GetRenderer(), "images/Yugi/nu phu thuy ao den.png");
@@ -105,6 +104,7 @@ void Game::CreateGame1()
 	SDL_Texture* Card25 = IMG_LoadTexture(WINDOW.GetRenderer(), "images/Yugi/vong luc vong tinh.png");
 
 	IntGame();
+	SDL_Event e;
 	while (WINDOW.IsDone())
 	{
 		
@@ -118,7 +118,9 @@ void Game::CreateGame2()
 	WINDOW.SetUp("DUEL", SCREEN_WIDTH, SCREEN_HEIGHT);
 	SDL_Surface* iconSurface = IMG_Load("images/icon/icon1.png");
 	SDL_SetWindowIcon(WINDOW.GetWindow(), iconSurface);
-	SDL_Event e;
+	MUSIC_INGAME.SetMusic("musics/MusicInGame.mp3");
+	MUSIC_INGAME.Play();
+	MUSIC_INGAME.SetRepeat();
 
 	SDL_Texture* Card1 = IMG_LoadTexture(WINDOW.GetRenderer(), "images/Yugi/phu thuy ao den.png");
 	SDL_Texture* Card2 = IMG_LoadTexture(WINDOW.GetRenderer(), "images/Yugi/nu phu thuy ao den.png");
@@ -147,9 +149,25 @@ void Game::CreateGame2()
 	SDL_Texture* Card25 = IMG_LoadTexture(WINDOW.GetRenderer(), "images/Yugi/vong luc vong tinh.png");
 
 	IntGame();
+	SDL_Event e;
+	
+	std::vector<int> vec = { 1,1,1,2,2,2,3,3,4,5,5,8,6,6,6,7,7,7,9,15,15,16,10,10,18,14,14,13,25,23,23,23,24,19,20,22,11,21,12,17 };
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::shuffle(vec.begin(), vec.end(), gen);
+	bool Start = true;
+	int Card_th = 0;
 	while (WINDOW.IsDone())
 	{
+		while (SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_QUIT)
+			{
+				WINDOW.~WindowGame();
+			}
+			
 
+		}
 	}
 }
 

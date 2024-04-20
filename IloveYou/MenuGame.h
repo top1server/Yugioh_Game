@@ -56,7 +56,9 @@ public:
     void Deckconstruction();
     void CursorInput();
     void Render();
-    void Cleanup();
+    void Cleanup1();
+    void Cleanup2();
+    void Cleanup3();
     
     int isSoundPlayed = 0;
  
