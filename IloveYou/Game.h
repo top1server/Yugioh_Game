@@ -36,6 +36,7 @@ private:
 	Cursor CURSOR;
 	Volume VOLUME;
 	Start START;
+	TypeInputCursor CURSOR_INPUT;
 
 	SDL_Texture* Card1;
 	SDL_Texture* Card2;
@@ -73,7 +74,6 @@ public:
 	void CreateGame2();// PvE
 	void OutPutMenuGame();
 	StateMenu GetStateGame();
-	
 	void DrawTurnPlayer();
 	int WinOrLose();
 

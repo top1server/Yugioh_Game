@@ -134,6 +134,12 @@ StateMenu MenuGame::InitiationMenuState()
             gWindowGameMenu1.Draw(gOption, &OptionRect);
             gWindowGameMenu1.Draw(gQuitGame, &QuitGameRect);
 
+            if (e.type == SDL_QUIT)
+            {
+                gWindowGameMenu1.~WindowGame();
+                gMusicMenu.~MusicGame();
+                gSoundMenu.~SoundGame();
+            }
             if (gCursorMenu.IsCursorInRect(&DuelModeRect) == SDL_TRUE)
             {
                 // Draw
@@ -524,7 +530,7 @@ ModeGame MenuGame::InitiationMenuMode()
                 gTypeInput = TypeInputCursor::WAIT_CURSOR;
                 gModeGameMenu = ModeGame::PvP;
 
-                gWindowGameMenu2.Destroy();
+                Cleanup2();
                 return ModeGame::PvP;
             }
             SDL_DestroyTexture(PvP_D);
@@ -695,7 +701,7 @@ void MenuGame::Deckconstruction()
             gWindowGameMenu3.Draw(YugiDeckMenu,&Menu1Rect);
             gWindowGameMenu3.DrawFull(Yugi,&srcrect, &RectYugi);
 
-            if (gCursorMenu.IsCursorInRect(&X1Rect))
+            if (gCursorMenu.IsCursorInRect(&X1Rect) == SDL_TRUE)
             {
                 gWindowGameMenu3.Draw(X1, &X1Rect);
                 //SDL_DestroyTexture(X1);
@@ -704,7 +710,7 @@ void MenuGame::Deckconstruction()
 
             while (SDL_PollEvent(&e) != 0)
             {
-                if (gCursorMenu.IsCursorInRect(&X1Rect))
+                if (gCursorMenu.IsCursorInRect(&X1Rect) == SDL_TRUE)
                 {
                     
                     if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)

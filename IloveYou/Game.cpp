@@ -5,7 +5,7 @@ Game::Game()
 }
 void Game::IntGame()
 {
-    CURSOR.SetImageDefault("images/mouse/mouse1.png");
+    CURSOR.SetImageDefault("images/mouse/mouse2.png");
 	CURSOR.DrawCursorDefault();
 	CURSOR.SetImageCustom("images/mouse/cursor1.png");
 	IntImageBackGround();
@@ -26,19 +26,19 @@ void Game::IntImageBackGround()
 void Game::IntIconInGame()
 {
 	SDL_Texture* Undo = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/undo.png");
-	SDL_Texture* Indo = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/indo.png");
+	SDL_Texture* Speed = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/speed.png");
 	SDL_Texture* Option = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/option.png");
-	SDL_Rect UndoRect = { 1000,10,0,0 };
+	SDL_Rect UndoRect = { 12,161,0,0 };
 	SDL_QueryTexture(Undo, NULL, NULL, &UndoRect.w, &UndoRect.h);
 	WINDOW.Draw(Undo, &UndoRect);
 	
-	SDL_Rect IndoRect = { 1200,10,0,0 };
-	SDL_QueryTexture(Indo, NULL, NULL, &IndoRect.w, &IndoRect.h);
-	WINDOW.Draw(Indo, &IndoRect);
+	SDL_Rect SpeedRect = { 12,240,0,0 };
+	SDL_QueryTexture(Speed, NULL, NULL, &SpeedRect.w, &SpeedRect.h);
+	WINDOW.Draw(Speed, &SpeedRect);
 
-	SDL_Rect OptionRect = { 1100,10,0,0 };
+	SDL_Rect OptionRect = {12,85,0,0 };
 	SDL_QueryTexture(Option, NULL, NULL, &OptionRect.w, &OptionRect.h);
-	WINDOW.Draw(Option, &OptionRect);;
+	WINDOW.Draw(Option, &OptionRect);
 	WINDOW.EndDraw();
 }
 
@@ -104,23 +104,41 @@ void Game::CreateGame1()
 	SDL_Texture* Card25 = IMG_LoadTexture(WINDOW.GetRenderer(), "images/Yugi/vong luc vong tinh.png");
 
 	IntGame();
+	
+
 	SDL_Event e;
 	while (WINDOW.IsDone())
 	{
 		
 	}
-
 }
 void Game::CreateGame2()
 {
 	START.StartAnimation();
-
 	WINDOW.SetUp("DUEL", SCREEN_WIDTH, SCREEN_HEIGHT);
 	SDL_Surface* iconSurface = IMG_Load("images/icon/icon1.png");
 	SDL_SetWindowIcon(WINDOW.GetWindow(), iconSurface);
+
 	MUSIC_INGAME.SetMusic("musics/MusicInGame.mp3");
 	MUSIC_INGAME.Play();
 	MUSIC_INGAME.SetRepeat();
+
+	SDL_Texture* BackGround = IMG_LoadTexture(WINDOW.GetRenderer(), "images/map.png");
+	SDL_Rect BGRect;
+	BGRect = { 0,0,1440,810 };
+
+	SDL_Texture* Undo = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/undo.png");
+	SDL_Texture* Speed = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/speed.png");
+	SDL_Texture* Option = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/option.png");
+
+	SDL_Rect UndoRect = { 12,161,0,0 };
+	SDL_QueryTexture(Undo, NULL, NULL, &UndoRect.w, &UndoRect.h);
+
+	SDL_Rect SpeedRect = { 12,240,0,0 };
+	SDL_QueryTexture(Speed, NULL, NULL, &SpeedRect.w, &SpeedRect.h);
+
+	SDL_Rect OptionRect = { 12,85,0,0 };
+	SDL_QueryTexture(Option, NULL, NULL, &OptionRect.w, &OptionRect.h);
 
 	SDL_Texture* Card1 = IMG_LoadTexture(WINDOW.GetRenderer(), "images/Yugi/phu thuy ao den.png");
 	SDL_Texture* Card2 = IMG_LoadTexture(WINDOW.GetRenderer(), "images/Yugi/nu phu thuy ao den.png");
@@ -151,24 +169,117 @@ void Game::CreateGame2()
 	IntGame();
 	SDL_Event e;
 	
+	// Click
+	const int SPRITE_WIDTH = 80;
+	const int SPRITE_HEIGHT = 80;
+	const int ROWS = 5;
+	const int COLUMNS = 8;
+	const int TOTAL_FRAMES = 40;
+	const int FRAME_DELAY = 10;
+	SDL_Texture* Click = IMG_LoadTexture(WINDOW.GetRenderer(), "images/turn.png");
+	int frame = 0;
+	SDL_Rect clipRect;
+	SDL_Rect click;
+
 	std::vector<int> vec = { 1,1,1,2,2,2,3,3,4,5,5,8,6,6,6,7,7,7,9,15,15,16,10,10,18,14,14,13,25,23,23,23,24,19,20,22,11,21,12,17 };
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	std::shuffle(vec.begin(), vec.end(), gen);
 	bool Start = true;
 	int Card_th = 0;
+
+	int x, y;
 	while (WINDOW.IsDone())
 	{
-		while (SDL_PollEvent(&e) != 0)
+		WINDOW.RendererClear();
+		while (SDL_PollEvent(&e))
 		{
-			if (e.type == SDL_QUIT)
+			switch (e.type)
 			{
+			case SDL_QUIT:
 				WINDOW.~WindowGame();
-			}
-			
+				MUSIC_INGAME.~MusicGame();
+				break;
+			case SDL_MOUSEMOTION:
+				CURSOR_INPUT = TypeInputCursor::WAIT_CURSOR;
 
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				CURSOR_INPUT = TypeInputCursor::WAIT_CURSOR;
+				if (e.button.button == SDL_BUTTON_LEFT)
+				{
+					CURSOR_INPUT = TypeInputCursor::LEFT_CURSOR;
+				}
+				else if (e.button.button == SDL_BUTTON_RIGHT)
+				{
+					CURSOR_INPUT = TypeInputCursor::RIGHT_CURSOR;
+				}
+				break;
+			}
 		}
-	}
+
+		WINDOW.Draw(BackGround, &BGRect);
+		WINDOW.Draw(Undo, &UndoRect);
+		WINDOW.Draw(Speed, &SpeedRect);
+		WINDOW.Draw(Option, &OptionRect);
+
+		if (CURSOR.IsCursorInRect(&OptionRect) == SDL_TRUE)
+		{
+			SDL_Texture* OptionClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/option1.png");
+			SDL_Rect OptionClickRect;
+			SDL_QueryTexture(OptionClick, NULL, NULL, &OptionClickRect.w, &OptionClickRect.h);
+			OptionClickRect.x = 12;
+			OptionClickRect.y = 85;
+			WINDOW.Draw(OptionClick, &OptionClickRect);
+			SDL_DestroyTexture(OptionClick);
+		}
+		else if (CURSOR.IsCursorInRect(&UndoRect) == SDL_TRUE)
+		{
+			SDL_Texture* UndoClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/undo1.png");
+			SDL_Rect UndoClickRect;
+			SDL_QueryTexture(UndoClick, NULL, NULL, &UndoClickRect.w, &UndoClickRect.h);
+			UndoClickRect.x = 12;
+			UndoClickRect.y = 161;
+			WINDOW.Draw(UndoClick, &UndoClickRect);
+			SDL_DestroyTexture(UndoClick);
+		}
+		else if (CURSOR.IsCursorInRect(&SpeedRect) == SDL_TRUE)
+		{
+			SDL_Texture* SpeedClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/speed1.png");
+			SDL_Rect SpeedClickRect;
+			SDL_QueryTexture(SpeedClick, NULL, NULL, &SpeedClickRect.w, &SpeedClickRect.h);
+			SpeedClickRect.x = 12;
+			SpeedClickRect.y = 240;
+			WINDOW.Draw(SpeedClick, &SpeedClickRect);
+			SDL_DestroyTexture(SpeedClick);
+		}
+		if (CURSOR_INPUT == TypeInputCursor::LEFT_CURSOR)
+		{
+			CURSOR_INPUT = TypeInputCursor::WAIT_CURSOR;
+			while (true) {
+				clipRect.x = (frame % COLUMNS) * SPRITE_WIDTH;
+				clipRect.y = (frame / COLUMNS) * SPRITE_HEIGHT;
+				clipRect.w = SPRITE_WIDTH;
+				clipRect.h = SPRITE_HEIGHT;
+				
+				SDL_GetMouseState(&x, &y);
+				click.x = x - 35;
+				click.y = y - 35;
+				click.w = SPRITE_WIDTH;
+				click.h = SPRITE_HEIGHT;
+				WINDOW.DrawFull(Click, &clipRect, &click);
+				WINDOW.EndDraw();
+				frame++;
+				if (frame == 40)
+				{
+					frame = 0;
+					break;
+				}
+				SDL_Delay(FRAME_DELAY);
+			}
+		}
+		WINDOW.EndDraw();
+	}	
 }
 
 StateMenu Game::GetStateGame()
