@@ -1,4 +1,4 @@
-#include "Game.h"
+﻿#include "Game.h"
 Game::Game()
 {
 	IntGame();
@@ -175,19 +175,32 @@ void Game::CreateGame2()
 	const int COLUMNS = 8;
 	const int TOTAL_FRAMES = 40;
 	const int FRAME_DELAY = 10;
-	SDL_Texture* Click = IMG_LoadTexture(WINDOW.GetRenderer(), "images/turn.png");
 	int frame = 0;
+	SDL_Texture* Click = IMG_LoadTexture(WINDOW.GetRenderer(), "images/click.png");
 	SDL_Rect clipRect;
 	SDL_Rect click;
 
-	std::vector<int> vec = { 1,1,1,2,2,2,3,3,4,5,5,8,6,6,6,7,7,7,9,15,15,16,10,10,18,14,14,13,25,23,23,23,24,19,20,22,11,21,12,17 };
+	std::vector<std::pair<int, SDL_Texture*>> vec = { {1,Card1},{1,Card1},{1,Card1},{2,Card2},{2,Card2},{2,Card2},{3,Card3},{3,Card3},{4, Card4},{5,Card5},{5,Card5},{8,Card8},{6,Card6},{6,Card6},{6,Card6},{7,Card7},{7,Card7},{7,Card7},{9,Card9},{15,Card15},{15,Card15},{16,Card16},{10,Card10},{10,Card10},{18,Card18},{14,Card14},{14,Card14},{13,Card13},{25,Card25},{23,Card23},{23,Card23},{23,Card23},{24,Card24},{19,Card19},{20,Card20},{22,Card22},{11,Card11},{21,Card21},{12,Card12},{17,Card17} };
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	std::shuffle(vec.begin(), vec.end(), gen);
+	
 	bool Start = true;
-	int Card_th = 0;
-
+	int Card_th;
 	int x, y;
+	SDL_Rect StartRect = {1250,330,0,0};
+	SDL_Rect StartRect1 = { 1250,330,0,0 };
+	SDL_Rect StartRect2 = { 1250,330,0,0 };
+	SDL_Rect StartRect3 = { 1250,330,0,0 };
+	SDL_Rect StartRect4 = { 1250,330,0,0 };
+
+	const int DEST1_x = 610;
+	const int DEST1_y = 620;
+	const int DEST2_x = 500;
+	const int DEST3_x = 720;
+	const int DEST4_x = 390;
+	const int DEST5_x = 720 + 110;
+	
 	while (WINDOW.IsDone())
 	{
 		WINDOW.RendererClear();
@@ -252,6 +265,381 @@ void Game::CreateGame2()
 			WINDOW.Draw(SpeedClick, &SpeedClickRect);
 			SDL_DestroyTexture(SpeedClick);
 		}
+		
+		//Start;
+		if (Start)
+		{
+			//Card4
+			for (int i = 0; i <= 140; i += 10) {
+				StartRect3.w = i;
+				StartRect3.h = (int)((float)i / 140 * 180);
+				StartRect3.x = (int)((float)1250 - i / 2);
+				StartRect3.y = (int)((float)330 - (float)StartRect3.h / 2);
+				WINDOW.Draw(vec[3].second, &StartRect3);
+				WINDOW.EndDraw();
+				SDL_Delay(20);
+			}
+			while (true)
+			{
+				WINDOW.RendererClear();
+
+				WINDOW.Draw(BackGround, &BGRect);
+				WINDOW.Draw(Undo, &UndoRect);
+				WINDOW.Draw(Speed, &SpeedRect);
+				WINDOW.Draw(Option, &OptionRect);
+
+				if (CURSOR.IsCursorInRect(&OptionRect) == SDL_TRUE)
+				{
+					SDL_Texture* OptionClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/option1.png");
+					SDL_Rect OptionClickRect;
+					SDL_QueryTexture(OptionClick, NULL, NULL, &OptionClickRect.w, &OptionClickRect.h);
+					OptionClickRect.x = 12;
+					OptionClickRect.y = 85;
+					WINDOW.Draw(OptionClick, &OptionClickRect);
+					SDL_DestroyTexture(OptionClick);
+				}
+				else if (CURSOR.IsCursorInRect(&UndoRect) == SDL_TRUE)
+				{
+					SDL_Texture* UndoClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/undo1.png");
+					SDL_Rect UndoClickRect;
+					SDL_QueryTexture(UndoClick, NULL, NULL, &UndoClickRect.w, &UndoClickRect.h);
+					UndoClickRect.x = 12;
+					UndoClickRect.y = 161;
+					WINDOW.Draw(UndoClick, &UndoClickRect);
+					SDL_DestroyTexture(UndoClick);
+				}
+				else if (CURSOR.IsCursorInRect(&SpeedRect) == SDL_TRUE)
+				{
+					SDL_Texture* SpeedClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/speed1.png");
+					SDL_Rect SpeedClickRect;
+					SDL_QueryTexture(SpeedClick, NULL, NULL, &SpeedClickRect.w, &SpeedClickRect.h);
+					SpeedClickRect.x = 12;
+					SpeedClickRect.y = 240;
+					WINDOW.Draw(SpeedClick, &SpeedClickRect);
+					SDL_DestroyTexture(SpeedClick);
+				}
+
+				int dx = DEST4_x - StartRect3.x;
+				int dy = DEST1_y - StartRect3.y;
+				int distance = sqrt(dx * dx + dy * dy);
+				if (distance > 1 && dy > 0)
+				{
+					float stepX = dx / (float)distance;
+					float stepY = dy / (float)distance;
+
+					StartRect3.x += (int)(stepX * 3);
+					StartRect3.y += (int)(stepY * 3);
+				}
+				WINDOW.Draw(vec[3].second, &StartRect3);
+
+				WINDOW.EndDraw();
+				if (distance < 2)
+				{
+					break;
+				}
+			}
+			// Card2
+			for (int i = 0; i <= 140; i += 10) {
+				StartRect1.w = i;
+				StartRect1.h = (int)((float)i / 140 * 180);
+				StartRect1.x = (int)((float)1250 - i / 2);
+				StartRect1.y = (int)((float)330 - (float)StartRect1.h / 2);
+				WINDOW.Draw(vec[1].second, &StartRect1);
+				WINDOW.EndDraw();
+				SDL_Delay(20);
+			}
+			while (true)
+			{
+				WINDOW.RendererClear();
+
+				WINDOW.Draw(BackGround, &BGRect);
+				WINDOW.Draw(Undo, &UndoRect);
+				WINDOW.Draw(Speed, &SpeedRect);
+				WINDOW.Draw(Option, &OptionRect);
+				WINDOW.Draw(vec[3].second, &StartRect3);
+
+				if (CURSOR.IsCursorInRect(&OptionRect) == SDL_TRUE)
+				{
+					SDL_Texture* OptionClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/option1.png");
+					SDL_Rect OptionClickRect;
+					SDL_QueryTexture(OptionClick, NULL, NULL, &OptionClickRect.w, &OptionClickRect.h);
+					OptionClickRect.x = 12;
+					OptionClickRect.y = 85;
+					WINDOW.Draw(OptionClick, &OptionClickRect);
+					SDL_DestroyTexture(OptionClick);
+				}
+				else if (CURSOR.IsCursorInRect(&UndoRect) == SDL_TRUE)
+				{
+					SDL_Texture* UndoClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/undo1.png");
+					SDL_Rect UndoClickRect;
+					SDL_QueryTexture(UndoClick, NULL, NULL, &UndoClickRect.w, &UndoClickRect.h);
+					UndoClickRect.x = 12;
+					UndoClickRect.y = 161;
+					WINDOW.Draw(UndoClick, &UndoClickRect);
+					SDL_DestroyTexture(UndoClick);
+				}
+				else if (CURSOR.IsCursorInRect(&SpeedRect) == SDL_TRUE)
+				{
+					SDL_Texture* SpeedClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/speed1.png");
+					SDL_Rect SpeedClickRect;
+					SDL_QueryTexture(SpeedClick, NULL, NULL, &SpeedClickRect.w, &SpeedClickRect.h);
+					SpeedClickRect.x = 12;
+					SpeedClickRect.y = 240;
+					WINDOW.Draw(SpeedClick, &SpeedClickRect);
+					SDL_DestroyTexture(SpeedClick);
+				}
+
+				int dx = DEST2_x - StartRect1.x;
+				int dy = DEST1_y - StartRect1.y;
+				int distance = sqrt(dx * dx + dy * dy);
+				if (distance > 1 && dy > 0)
+				{
+					float stepX = dx / (float)distance;
+					float stepY = dy / (float)distance;
+
+					StartRect1.x += (int)(stepX * 3);
+					StartRect1.y += (int)(stepY * 3);
+				}
+				WINDOW.Draw(vec[1].second, &StartRect1);
+
+				WINDOW.EndDraw();
+				if (distance < 2)
+				{
+					break;
+				}
+			}
+			//Card1
+			for (int i = 0; i <= 140; i += 10) {
+				//SDL_DestroyTexture(vec[0].second);
+				StartRect.w = i;
+				StartRect.h = (int)((float)i / 140 * 180);
+				StartRect.x = (int)((float)1250 - i / 2);
+				StartRect.y = (int)((float)330 - (float)StartRect.h / 2);
+				//gWindowGameMenu3.RendererClear();
+				WINDOW.Draw(vec[0].second, &StartRect);
+				WINDOW.EndDraw();
+				SDL_Delay(20);
+			}
+			while (true)
+			{
+				WINDOW.RendererClear();
+
+				WINDOW.Draw(BackGround, &BGRect);
+				WINDOW.Draw(Undo, &UndoRect);
+				WINDOW.Draw(Speed, &SpeedRect);
+				WINDOW.Draw(Option, &OptionRect);
+				WINDOW.Draw(vec[3].second, &StartRect3);
+				WINDOW.Draw(vec[1].second, &StartRect1);
+				
+
+				if (CURSOR.IsCursorInRect(&OptionRect) == SDL_TRUE)
+				{
+					SDL_Texture* OptionClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/option1.png");
+					SDL_Rect OptionClickRect;
+					SDL_QueryTexture(OptionClick, NULL, NULL, &OptionClickRect.w, &OptionClickRect.h);
+					OptionClickRect.x = 12;
+					OptionClickRect.y = 85;
+					WINDOW.Draw(OptionClick, &OptionClickRect);
+					SDL_DestroyTexture(OptionClick);
+				}
+				else if (CURSOR.IsCursorInRect(&UndoRect) == SDL_TRUE)
+				{
+					SDL_Texture* UndoClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/undo1.png");
+					SDL_Rect UndoClickRect;
+					SDL_QueryTexture(UndoClick, NULL, NULL, &UndoClickRect.w, &UndoClickRect.h);
+					UndoClickRect.x = 12;
+					UndoClickRect.y = 161;
+					WINDOW.Draw(UndoClick, &UndoClickRect);
+					SDL_DestroyTexture(UndoClick);
+				}
+				else if (CURSOR.IsCursorInRect(&SpeedRect) == SDL_TRUE)
+				{
+					SDL_Texture* SpeedClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/speed1.png");
+					SDL_Rect SpeedClickRect;
+					SDL_QueryTexture(SpeedClick, NULL, NULL, &SpeedClickRect.w, &SpeedClickRect.h);
+					SpeedClickRect.x = 12;
+					SpeedClickRect.y = 240;
+					WINDOW.Draw(SpeedClick, &SpeedClickRect);
+					SDL_DestroyTexture(SpeedClick);
+				}
+
+				int dx = DEST1_x - StartRect.x;
+				int dy = DEST1_y - StartRect.y;
+				int distance = sqrt(dx * dx + dy * dy);
+				if (distance > 1 && dy > 0)
+				{
+					float stepX = dx / (float)distance;
+					float stepY = dy / (float)distance;
+
+					StartRect.x += (int)(stepX * 3);
+					StartRect.y += (int)(stepY * 3);
+				}
+				WINDOW.Draw(vec[0].second, &StartRect);
+
+				WINDOW.EndDraw();
+				if (distance < 2)
+				{
+					break;
+				}
+			}
+			
+			// Card3
+			for (int i = 0; i <= 140; i += 10) {
+				StartRect2.w = i;
+				StartRect2.h = (int)((float)i / 140 * 180);
+				StartRect2.x = (int)((float)1250 - i / 2);
+				StartRect2.y = (int)((float)330 - (float)StartRect2.h / 2);
+				WINDOW.Draw(vec[2].second, &StartRect2);
+				WINDOW.EndDraw();
+				SDL_Delay(20);
+			}
+			while (true)
+			{
+				WINDOW.RendererClear();
+				
+				WINDOW.Draw(BackGround, &BGRect);
+				WINDOW.Draw(Undo, &UndoRect);
+				WINDOW.Draw(Speed, &SpeedRect);
+				WINDOW.Draw(Option, &OptionRect);
+				WINDOW.Draw(vec[3].second, &StartRect3);
+				WINDOW.Draw(vec[1].second, &StartRect1);
+				WINDOW.Draw(vec[0].second, &StartRect);
+				
+
+				if (CURSOR.IsCursorInRect(&OptionRect) == SDL_TRUE)
+				{
+					SDL_Texture* OptionClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/option1.png");
+					SDL_Rect OptionClickRect;
+					SDL_QueryTexture(OptionClick, NULL, NULL, &OptionClickRect.w, &OptionClickRect.h);
+					OptionClickRect.x = 12;
+					OptionClickRect.y = 85;
+					WINDOW.Draw(OptionClick, &OptionClickRect);
+					SDL_DestroyTexture(OptionClick);
+				}
+				else if (CURSOR.IsCursorInRect(&UndoRect) == SDL_TRUE)
+				{
+					SDL_Texture* UndoClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/undo1.png");
+					SDL_Rect UndoClickRect;
+					SDL_QueryTexture(UndoClick, NULL, NULL, &UndoClickRect.w, &UndoClickRect.h);
+					UndoClickRect.x = 12;
+					UndoClickRect.y = 161;
+					WINDOW.Draw(UndoClick, &UndoClickRect);
+					SDL_DestroyTexture(UndoClick);
+				}
+				else if (CURSOR.IsCursorInRect(&SpeedRect) == SDL_TRUE)
+				{
+					SDL_Texture* SpeedClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/speed1.png");
+					SDL_Rect SpeedClickRect;
+					SDL_QueryTexture(SpeedClick, NULL, NULL, &SpeedClickRect.w, &SpeedClickRect.h);
+					SpeedClickRect.x = 12;
+					SpeedClickRect.y = 240;
+					WINDOW.Draw(SpeedClick, &SpeedClickRect);
+					SDL_DestroyTexture(SpeedClick);
+				}
+
+				int dx = DEST3_x - StartRect2.x;
+				int dy = DEST1_y - StartRect2.y;
+				int distance = sqrt(dx * dx + dy * dy);
+				if (distance > 1 && dy > 0)
+				{
+					float stepX = dx / (float)distance;
+					float stepY = dy / (float)distance;
+
+					StartRect2.x += (int)(stepX * 3);
+					StartRect2.y += (int)(stepY * 3);
+				}
+				WINDOW.Draw(vec[2].second, &StartRect2);
+
+				WINDOW.EndDraw();
+				if (distance < 2)
+				{
+					break;
+				}
+			}
+
+			// Card 5
+			for (int i = 0; i <= 140; i += 10) {
+				StartRect4.w = i;
+				StartRect4.h = (int)((float)i / 140 * 180);
+				StartRect4.x = (int)((float)1250 - i / 2);
+				StartRect4.y = (int)((float)330 - (float)StartRect4.h / 2);
+				WINDOW.Draw(vec[4].second, &StartRect4);
+				WINDOW.EndDraw();
+				SDL_Delay(20);
+			}
+			while (true)
+			{
+				WINDOW.RendererClear();
+
+				WINDOW.Draw(BackGround, &BGRect);
+				WINDOW.Draw(Undo, &UndoRect);
+				WINDOW.Draw(Speed, &SpeedRect);
+				WINDOW.Draw(Option, &OptionRect);
+				WINDOW.Draw(vec[3].second, &StartRect3);
+				WINDOW.Draw(vec[1].second, &StartRect1);
+				WINDOW.Draw(vec[0].second, &StartRect);
+				WINDOW.Draw(vec[2].second, &StartRect2);
+
+				if (CURSOR.IsCursorInRect(&OptionRect) == SDL_TRUE)
+				{
+					SDL_Texture* OptionClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/option1.png");
+					SDL_Rect OptionClickRect;
+					SDL_QueryTexture(OptionClick, NULL, NULL, &OptionClickRect.w, &OptionClickRect.h);
+					OptionClickRect.x = 12;
+					OptionClickRect.y = 85;
+					WINDOW.Draw(OptionClick, &OptionClickRect);
+					SDL_DestroyTexture(OptionClick);
+				}
+				else if (CURSOR.IsCursorInRect(&UndoRect) == SDL_TRUE)
+				{
+					SDL_Texture* UndoClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/undo1.png");
+					SDL_Rect UndoClickRect;
+					SDL_QueryTexture(UndoClick, NULL, NULL, &UndoClickRect.w, &UndoClickRect.h);
+					UndoClickRect.x = 12;
+					UndoClickRect.y = 161;
+					WINDOW.Draw(UndoClick, &UndoClickRect);
+					SDL_DestroyTexture(UndoClick);
+				}
+				else if (CURSOR.IsCursorInRect(&SpeedRect) == SDL_TRUE)
+				{
+					SDL_Texture* SpeedClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/speed1.png");
+					SDL_Rect SpeedClickRect;
+					SDL_QueryTexture(SpeedClick, NULL, NULL, &SpeedClickRect.w, &SpeedClickRect.h);
+					SpeedClickRect.x = 12;
+					SpeedClickRect.y = 240;
+					WINDOW.Draw(SpeedClick, &SpeedClickRect);
+					SDL_DestroyTexture(SpeedClick);
+				}
+
+				int dx = DEST5_x - StartRect4.x;
+				int dy = DEST1_y - StartRect4.y;
+				int distance = sqrt(dx * dx + dy * dy);
+				if (distance > 1 && dy > 0)
+				{
+					float stepX = dx / (float)distance;
+					float stepY = dy / (float)distance;
+
+					StartRect4.x += (int)(stepX * 3);
+					StartRect4.y += (int)(stepY * 3);
+				}
+				WINDOW.Draw(vec[4].second, &StartRect4);
+
+				WINDOW.EndDraw();
+				if (distance < 2)
+				{
+					break;
+				}
+			}
+
+			Start = false;
+		}
+
+		WINDOW.Draw(vec[3].second, &StartRect3);
+		WINDOW.Draw(vec[1].second, &StartRect1);
+		WINDOW.Draw(vec[0].second, &StartRect);
+		WINDOW.Draw(vec[2].second, &StartRect2);
+		WINDOW.Draw(vec[4].second, &StartRect4);
+		//Click effect
 		if (CURSOR_INPUT == TypeInputCursor::LEFT_CURSOR)
 		{
 			CURSOR_INPUT = TypeInputCursor::WAIT_CURSOR;
@@ -260,7 +648,7 @@ void Game::CreateGame2()
 				clipRect.y = (frame / COLUMNS) * SPRITE_HEIGHT;
 				clipRect.w = SPRITE_WIDTH;
 				clipRect.h = SPRITE_HEIGHT;
-				
+
 				SDL_GetMouseState(&x, &y);
 				click.x = x - 35;
 				click.y = y - 35;
@@ -277,6 +665,807 @@ void Game::CreateGame2()
 				SDL_Delay(FRAME_DELAY);
 			}
 		}
+
+		// Mô tả lá bài
+		if (CURSOR.IsCursorInRect(&StartRect3) == SDL_TRUE)
+		{
+			WINDOW.RendererClear();
+
+			WINDOW.Draw(BackGround, &BGRect);
+			WINDOW.Draw(Undo, &UndoRect);
+			WINDOW.Draw(Speed, &SpeedRect);
+			WINDOW.Draw(Option, &OptionRect);
+
+			if (CURSOR.IsCursorInRect(&OptionRect) == SDL_TRUE)
+			{
+				SDL_Texture* OptionClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/option1.png");
+				SDL_Rect OptionClickRect;
+				SDL_QueryTexture(OptionClick, NULL, NULL, &OptionClickRect.w, &OptionClickRect.h);
+				OptionClickRect.x = 12;
+				OptionClickRect.y = 85;
+				WINDOW.Draw(OptionClick, &OptionClickRect);
+				SDL_DestroyTexture(OptionClick);
+			}
+			else if (CURSOR.IsCursorInRect(&UndoRect) == SDL_TRUE)
+			{
+				SDL_Texture* UndoClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/undo1.png");
+				SDL_Rect UndoClickRect;
+				SDL_QueryTexture(UndoClick, NULL, NULL, &UndoClickRect.w, &UndoClickRect.h);
+				UndoClickRect.x = 12;
+				UndoClickRect.y = 161;
+				WINDOW.Draw(UndoClick, &UndoClickRect);
+				SDL_DestroyTexture(UndoClick);
+			}
+			else if (CURSOR.IsCursorInRect(&SpeedRect) == SDL_TRUE)
+			{
+				SDL_Texture* SpeedClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/speed1.png");
+				SDL_Rect SpeedClickRect;
+				SDL_QueryTexture(SpeedClick, NULL, NULL, &SpeedClickRect.w, &SpeedClickRect.h);
+				SpeedClickRect.x = 12;
+				SpeedClickRect.y = 240;
+				WINDOW.Draw(SpeedClick, &SpeedClickRect);
+				SDL_DestroyTexture(SpeedClick);
+			}
+
+			WINDOW.Draw(vec[1].second, &StartRect1);
+			WINDOW.Draw(vec[0].second, &StartRect);
+			WINDOW.Draw(vec[2].second, &StartRect2);
+			WINDOW.Draw(vec[4].second, &StartRect4);
+
+			StartRect3.y -= 20;
+			WINDOW.Draw(vec[3].second, &StartRect3);
+			StartRect3.y += 20;
+
+			SDL_Texture* D = NULL;
+			if (vec[3].first == 1)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/1.png");
+			}
+			else if (vec[3].first == 2)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/2.png");
+			}
+			else if (vec[3].first == 3)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/3.png");
+			}
+			else if (vec[3].first == 4)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/4.png");
+			}
+			else if (vec[3].first == 5)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/5.png");
+			}
+			else if (vec[3].first == 6)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/6.png");
+			}
+			else if (vec[3].first == 7)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/7.png");
+			}
+			else if (vec[3].first == 8)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/8.png");
+			}
+			else if (vec[3].first == 9)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/9.png");
+			}
+			else if (vec[3].first == 10)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/10.png");
+			}
+			else if (vec[3].first == 11)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/11.png");
+			}
+			else if (vec[3].first == 12)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/12.png");
+			}
+			if (vec[3].first == 13)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/13.png");
+			}
+			else if (vec[3].first == 14)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/14.png");
+			}
+			else if (vec[3].first == 15)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/15.png");
+			}
+			else if (vec[3].first == 16)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/16.png");
+			}
+			else if (vec[3].first == 17)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/17.png");
+			}
+			else if (vec[3].first == 18)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/18.png");
+			}
+			else if (vec[3].first == 19)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/19.png");
+			}
+			else if (vec[3].first == 20)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/20.png");
+			}
+			else if (vec[3].first == 21)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/21.png");
+			}
+			else if (vec[3].first == 22)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/22.png");
+			}
+			else if (vec[3].first == 23)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/23.png");
+			}
+			else if (vec[3].first == 24)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/24.png");
+			}
+			else if (vec[3].first == 25)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/25.png");
+			}
+
+			SDL_Rect DRect;
+			SDL_QueryTexture(D, NULL, NULL, &DRect.w, &DRect.h);
+			DRect.x = (1440 - DRect.w)/2;
+			DRect.y = 100;
+			WINDOW.Draw(D, &DRect);
+			SDL_DestroyTexture(D);
+		}
+
+		else if (CURSOR.IsCursorInRect(&StartRect1) == SDL_TRUE)
+		{
+			WINDOW.RendererClear();
+
+			WINDOW.Draw(BackGround, &BGRect);
+			WINDOW.Draw(Undo, &UndoRect);
+			WINDOW.Draw(Speed, &SpeedRect);
+			WINDOW.Draw(Option, &OptionRect);
+
+			if (CURSOR.IsCursorInRect(&OptionRect) == SDL_TRUE)
+			{
+				SDL_Texture* OptionClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/option1.png");
+				SDL_Rect OptionClickRect;
+				SDL_QueryTexture(OptionClick, NULL, NULL, &OptionClickRect.w, &OptionClickRect.h);
+				OptionClickRect.x = 12;
+				OptionClickRect.y = 85;
+				WINDOW.Draw(OptionClick, &OptionClickRect);
+				SDL_DestroyTexture(OptionClick);
+			}
+			else if (CURSOR.IsCursorInRect(&UndoRect) == SDL_TRUE)
+			{
+				SDL_Texture* UndoClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/undo1.png");
+				SDL_Rect UndoClickRect;
+				SDL_QueryTexture(UndoClick, NULL, NULL, &UndoClickRect.w, &UndoClickRect.h);
+				UndoClickRect.x = 12;
+				UndoClickRect.y = 161;
+				WINDOW.Draw(UndoClick, &UndoClickRect);
+				SDL_DestroyTexture(UndoClick);
+			}
+			else if (CURSOR.IsCursorInRect(&SpeedRect) == SDL_TRUE)
+			{
+				SDL_Texture* SpeedClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/speed1.png");
+				SDL_Rect SpeedClickRect;
+				SDL_QueryTexture(SpeedClick, NULL, NULL, &SpeedClickRect.w, &SpeedClickRect.h);
+				SpeedClickRect.x = 12;
+				SpeedClickRect.y = 240;
+				WINDOW.Draw(SpeedClick, &SpeedClickRect);
+				SDL_DestroyTexture(SpeedClick);
+			}
+
+			WINDOW.Draw(vec[3].second, &StartRect3);
+			WINDOW.Draw(vec[0].second, &StartRect);
+			WINDOW.Draw(vec[2].second, &StartRect2);
+			WINDOW.Draw(vec[4].second, &StartRect4);
+
+			StartRect1.y -= 20;
+			WINDOW.Draw(vec[1].second, &StartRect1);
+			StartRect1.y += 20;
+
+			SDL_Texture* D = NULL;
+			if (vec[1].first == 1)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/1.png");
+			}
+			else if (vec[1].first == 2)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/2.png");
+			}
+			else if (vec[1].first == 3)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/3.png");
+			}
+			else if (vec[1].first == 4)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/4.png");
+			}
+			else if (vec[1].first == 5)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/5.png");
+			}
+			else if (vec[1].first == 6)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/6.png");
+			}
+			else if (vec[1].first == 7)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/7.png");
+			}
+			else if (vec[1].first == 8)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/8.png");
+			}
+			else if (vec[1].first == 9)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/9.png");
+			}
+			else if (vec[1].first == 10)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/10.png");
+			}
+			else if (vec[1].first == 11)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/11.png");
+			}
+			else if (vec[1].first == 12)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/12.png");
+			}
+			if (vec[1].first == 13)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/13.png");
+			}
+			else if (vec[1].first == 14)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/14.png");
+			}
+			else if (vec[1].first == 15)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/15.png");
+			}
+			else if (vec[1].first == 16)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/16.png");
+			}
+			else if (vec[1].first == 17)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/17.png");
+			}
+			else if (vec[1].first == 18)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/18.png");
+			}
+			else if (vec[1].first == 19)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/19.png");
+			}
+			else if (vec[1].first == 20)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/20.png");
+			}
+			else if (vec[1].first == 21)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/21.png");
+			}
+			else if (vec[1].first == 22)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/22.png");
+			}
+			else if (vec[1].first == 23)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/23.png");
+			}
+			else if (vec[1].first == 24)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/24.png");
+			}
+			else if (vec[1].first == 25)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/25.png");
+			}
+
+			SDL_Rect DRect;
+			SDL_QueryTexture(D, NULL, NULL, &DRect.w, &DRect.h);
+			DRect.x = (1440 - DRect.w) / 2;
+			DRect.y = 100;
+			WINDOW.Draw(D, &DRect);
+			SDL_DestroyTexture(D);
+		}
+
+		else if (CURSOR.IsCursorInRect(&StartRect) == SDL_TRUE)
+		{
+			WINDOW.RendererClear();
+
+			WINDOW.Draw(BackGround, &BGRect);
+			WINDOW.Draw(Undo, &UndoRect);
+			WINDOW.Draw(Speed, &SpeedRect);
+			WINDOW.Draw(Option, &OptionRect);
+
+			if (CURSOR.IsCursorInRect(&OptionRect) == SDL_TRUE)
+			{
+				SDL_Texture* OptionClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/option1.png");
+				SDL_Rect OptionClickRect;
+				SDL_QueryTexture(OptionClick, NULL, NULL, &OptionClickRect.w, &OptionClickRect.h);
+				OptionClickRect.x = 12;
+				OptionClickRect.y = 85;
+				WINDOW.Draw(OptionClick, &OptionClickRect);
+				SDL_DestroyTexture(OptionClick);
+			}
+			else if (CURSOR.IsCursorInRect(&UndoRect) == SDL_TRUE)
+			{
+				SDL_Texture* UndoClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/undo1.png");
+				SDL_Rect UndoClickRect;
+				SDL_QueryTexture(UndoClick, NULL, NULL, &UndoClickRect.w, &UndoClickRect.h);
+				UndoClickRect.x = 12;
+				UndoClickRect.y = 161;
+				WINDOW.Draw(UndoClick, &UndoClickRect);
+				SDL_DestroyTexture(UndoClick);
+			}
+			else if (CURSOR.IsCursorInRect(&SpeedRect) == SDL_TRUE)
+			{
+				SDL_Texture* SpeedClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/speed1.png");
+				SDL_Rect SpeedClickRect;
+				SDL_QueryTexture(SpeedClick, NULL, NULL, &SpeedClickRect.w, &SpeedClickRect.h);
+				SpeedClickRect.x = 12;
+				SpeedClickRect.y = 240;
+				WINDOW.Draw(SpeedClick, &SpeedClickRect);
+				SDL_DestroyTexture(SpeedClick);
+			}
+
+			WINDOW.Draw(vec[3].second, &StartRect3);
+			WINDOW.Draw(vec[1].second, &StartRect1);
+
+			WINDOW.Draw(vec[2].second, &StartRect2);
+			WINDOW.Draw(vec[4].second, &StartRect4);
+
+			StartRect.y -= 20;
+			WINDOW.Draw(vec[0].second, &StartRect);
+			StartRect.y += 20;
+
+			SDL_Texture* D = NULL;
+			if (vec[0].first == 1)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/1.png");
+			}
+			else if (vec[0].first == 2)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/2.png");
+			}
+			else if (vec[0].first == 3)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/3.png");
+			}
+			else if (vec[0].first == 4)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/4.png");
+			}
+			else if (vec[0].first == 5)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/5.png");
+			}
+			else if (vec[0].first == 6)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/6.png");
+			}
+			else if (vec[0].first == 7)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/7.png");
+			}
+			else if (vec[0].first == 8)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/8.png");
+			}
+			else if (vec[0].first == 9)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/9.png");
+			}
+			else if (vec[0].first == 10)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/10.png");
+			}
+			else if (vec[0].first == 11)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/11.png");
+			}
+			else if (vec[0].first == 12)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/12.png");
+			}
+			if (vec[0].first == 13)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/13.png");
+			}
+			else if (vec[0].first == 14)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/14.png");
+			}
+			else if (vec[0].first == 15)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/15.png");
+			}
+			else if (vec[0].first == 16)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/16.png");
+			}
+			else if (vec[0].first == 17)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/17.png");
+			}
+			else if (vec[0].first == 18)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/18.png");
+			}
+			else if (vec[0].first == 19)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/19.png");
+			}
+			else if (vec[0].first == 20)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/20.png");
+			}
+			else if (vec[0].first == 21)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/21.png");
+			}
+			else if (vec[0].first == 22)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/22.png");
+			}
+			else if (vec[0].first == 23)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/23.png");
+			}
+			else if (vec[0].first == 24)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/24.png");
+			}
+			else if (vec[0].first == 25)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/25.png");
+			}
+
+			SDL_Rect DRect;
+			SDL_QueryTexture(D, NULL, NULL, &DRect.w, &DRect.h);
+			DRect.x = (1440 - DRect.w) / 2;
+			DRect.y = 100;
+			WINDOW.Draw(D, &DRect);
+			SDL_DestroyTexture(D);
+		}
+
+		else if (CURSOR.IsCursorInRect(&StartRect2) == SDL_TRUE)
+		{
+			WINDOW.RendererClear();
+
+			WINDOW.Draw(BackGround, &BGRect);
+			WINDOW.Draw(Undo, &UndoRect);
+			WINDOW.Draw(Speed, &SpeedRect);
+			WINDOW.Draw(Option, &OptionRect);
+
+			if (CURSOR.IsCursorInRect(&OptionRect) == SDL_TRUE)
+			{
+				SDL_Texture* OptionClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/option1.png");
+				SDL_Rect OptionClickRect;
+				SDL_QueryTexture(OptionClick, NULL, NULL, &OptionClickRect.w, &OptionClickRect.h);
+				OptionClickRect.x = 12;
+				OptionClickRect.y = 85;
+				WINDOW.Draw(OptionClick, &OptionClickRect);
+				SDL_DestroyTexture(OptionClick);
+			}
+			else if (CURSOR.IsCursorInRect(&UndoRect) == SDL_TRUE)
+			{
+				SDL_Texture* UndoClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/undo1.png");
+				SDL_Rect UndoClickRect;
+				SDL_QueryTexture(UndoClick, NULL, NULL, &UndoClickRect.w, &UndoClickRect.h);
+				UndoClickRect.x = 12;
+				UndoClickRect.y = 161;
+				WINDOW.Draw(UndoClick, &UndoClickRect);
+				SDL_DestroyTexture(UndoClick);
+			}
+			else if (CURSOR.IsCursorInRect(&SpeedRect) == SDL_TRUE)
+			{
+				SDL_Texture* SpeedClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/speed1.png");
+				SDL_Rect SpeedClickRect;
+				SDL_QueryTexture(SpeedClick, NULL, NULL, &SpeedClickRect.w, &SpeedClickRect.h);
+				SpeedClickRect.x = 12;
+				SpeedClickRect.y = 240;
+				WINDOW.Draw(SpeedClick, &SpeedClickRect);
+				SDL_DestroyTexture(SpeedClick);
+			}
+
+			WINDOW.Draw(vec[3].second, &StartRect3);
+			WINDOW.Draw(vec[1].second, &StartRect1);
+			WINDOW.Draw(vec[0].second, &StartRect);
+
+			WINDOW.Draw(vec[4].second, &StartRect4);
+
+			StartRect2.y -= 20;
+			WINDOW.Draw(vec[2].second, &StartRect2);
+			StartRect2.y += 20;
+
+			SDL_Texture* D = NULL;
+			if (vec[2].first == 1)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/1.png");
+			}
+			else if (vec[2].first == 2)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/2.png");
+			}
+			else if (vec[2].first == 3)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/3.png");
+			}
+			else if (vec[2].first == 4)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/4.png");
+			}
+			else if (vec[2].first == 5)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/5.png");
+			}
+			else if (vec[2].first == 6)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/6.png");
+			}
+			else if (vec[2].first == 7)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/7.png");
+			}
+			else if (vec[2].first == 8)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/8.png");
+			}
+			else if (vec[2].first == 9)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/9.png");
+			}
+			else if (vec[2].first == 10)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/10.png");
+			}
+			else if (vec[2].first == 11)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/11.png");
+			}
+			else if (vec[2].first == 12)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/12.png");
+			}
+			if (vec[2].first == 13)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/13.png");
+			}
+			else if (vec[2].first == 14)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/14.png");
+			}
+			else if (vec[2].first == 15)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/15.png");
+			}
+			else if (vec[2].first == 16)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/16.png");
+			}
+			else if (vec[2].first == 17)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/17.png");
+			}
+			else if (vec[2].first == 18)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/18.png");
+			}
+			else if (vec[2].first == 19)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/19.png");
+			}
+			else if (vec[2].first == 20)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/20.png");
+			}
+			else if (vec[2].first == 21)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/21.png");
+			}
+			else if (vec[2].first == 22)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/22.png");
+			}
+			else if (vec[2].first == 23)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/23.png");
+			}
+			else if (vec[2].first == 24)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/24.png");
+			}
+			else if (vec[2].first == 25)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/25.png");
+			}
+
+			SDL_Rect DRect;
+			SDL_QueryTexture(D, NULL, NULL, &DRect.w, &DRect.h);
+			DRect.x = (1440 - DRect.w) / 2;
+			DRect.y = 100;
+			WINDOW.Draw(D, &DRect);
+			SDL_DestroyTexture(D);
+		}
+
+		else if (CURSOR.IsCursorInRect(&StartRect4) == SDL_TRUE)
+		{
+			WINDOW.RendererClear();
+
+			WINDOW.Draw(BackGround, &BGRect);
+			WINDOW.Draw(Undo, &UndoRect);
+			WINDOW.Draw(Speed, &SpeedRect);
+			WINDOW.Draw(Option, &OptionRect);
+
+			if (CURSOR.IsCursorInRect(&OptionRect) == SDL_TRUE)
+			{
+				SDL_Texture* OptionClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/option1.png");
+				SDL_Rect OptionClickRect;
+				SDL_QueryTexture(OptionClick, NULL, NULL, &OptionClickRect.w, &OptionClickRect.h);
+				OptionClickRect.x = 12;
+				OptionClickRect.y = 85;
+				WINDOW.Draw(OptionClick, &OptionClickRect);
+				SDL_DestroyTexture(OptionClick);
+			}
+			else if (CURSOR.IsCursorInRect(&UndoRect) == SDL_TRUE)
+			{
+				SDL_Texture* UndoClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/undo1.png");
+				SDL_Rect UndoClickRect;
+				SDL_QueryTexture(UndoClick, NULL, NULL, &UndoClickRect.w, &UndoClickRect.h);
+				UndoClickRect.x = 12;
+				UndoClickRect.y = 161;
+				WINDOW.Draw(UndoClick, &UndoClickRect);
+				SDL_DestroyTexture(UndoClick);
+			}
+			else if (CURSOR.IsCursorInRect(&SpeedRect) == SDL_TRUE)
+			{
+				SDL_Texture* SpeedClick = IMG_LoadTexture(WINDOW.GetRenderer(), "images/icon/speed1.png");
+				SDL_Rect SpeedClickRect;
+				SDL_QueryTexture(SpeedClick, NULL, NULL, &SpeedClickRect.w, &SpeedClickRect.h);
+				SpeedClickRect.x = 12;
+				SpeedClickRect.y = 240;
+				WINDOW.Draw(SpeedClick, &SpeedClickRect);
+				SDL_DestroyTexture(SpeedClick);
+			}
+
+			WINDOW.Draw(vec[3].second, &StartRect3);
+			WINDOW.Draw(vec[1].second, &StartRect1);
+			WINDOW.Draw(vec[0].second, &StartRect);
+			WINDOW.Draw(vec[4].second, &StartRect2);
+
+
+			StartRect4.y -= 20;
+			WINDOW.Draw(vec[4].second, &StartRect4);
+			StartRect4.y += 20;
+
+			SDL_Texture* D = NULL;
+			if (vec[4].first == 1)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/1.png");
+			}
+			else if (vec[4].first == 2)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/2.png");
+			}
+			else if (vec[4].first == 3)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/3.png");
+			}
+			else if (vec[4].first == 4)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/4.png");
+			}
+			else if (vec[4].first == 5)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/5.png");
+			}
+			else if (vec[4].first == 6)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/6.png");
+			}
+			else if (vec[4].first == 7)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/7.png");
+			}
+			else if (vec[4].first == 8)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/8.png");
+			}
+			else if (vec[4].first == 9)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/9.png");
+			}
+			else if (vec[4].first == 10)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/10.png");
+			}
+			else if (vec[4].first == 11)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/11.png");
+			}
+			else if (vec[4].first == 12)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/12.png");
+			}
+			if (vec[4].first == 13)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/13.png");
+			}
+			else if (vec[4].first == 14)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/14.png");
+			}
+			else if (vec[4].first == 15)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/15.png");
+			}
+			else if (vec[4].first == 16)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/16.png");
+			}
+			else if (vec[4].first == 17)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/17.png");
+			}
+			else if (vec[4].first == 18)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/18.png");
+			}
+			else if (vec[4].first == 19)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/19.png");
+			}
+			else if (vec[4].first == 20)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/20.png");
+			}
+			else if (vec[4].first == 21)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/21.png");
+			}
+			else if (vec[4].first == 22)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/22.png");
+			}
+			else if (vec[4].first == 23)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/23.png");
+			}
+			else if (vec[4].first == 24)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/24.png");
+			}
+			else if (vec[4].first == 25)
+			{
+				D = IMG_LoadTexture(WINDOW.GetRenderer(), "images/yugi/25.png");
+			}
+
+			SDL_Rect DRect;
+			SDL_QueryTexture(D, NULL, NULL, &DRect.w, &DRect.h);
+			DRect.x = (1440 - DRect.w) / 2;
+			DRect.y = 100;
+			WINDOW.Draw(D, &DRect);
+			SDL_DestroyTexture(D);
+		}
+
+
 		WINDOW.EndDraw();
 	}	
 }

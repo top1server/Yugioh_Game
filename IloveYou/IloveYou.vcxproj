@@ -152,7 +152,6 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Start.h" />
     <ClInclude Include="MenuGame.h" />
-    <ClInclude Include="collision.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="SoundGame.h" />
     <ClInclude Include="MusicGame.h" />

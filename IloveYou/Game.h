@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <vector>
-#include <stack>
 #include <algorithm>
 #include <random>
 #include <SDL.h>

@@ -617,6 +617,11 @@ void MenuGame::Deckconstruction()
     int lastY = 0;
     SDL_Event e;
 
+    int CardWidth = 185;
+    int CardHeight = 270;
+
+    SDL_Rect KaibaCard1 = { 25, 30, CardWidth, CardHeight };
+    SDL_Rect Card1;
     while (gWindowGameMenu3.IsDone())
     {
         gWindowGameMenu3.RendererClear();
@@ -706,12 +711,14 @@ void MenuGame::Deckconstruction()
                 SDL_DestroyTexture(X1);
             }
             gWindowGameMenu3.EndDraw();
-
+            Card1.x = KaibaCard1.x + RectYugi.x - srcrect.x;
+            Card1.y = KaibaCard1.y + RectYugi.y - srcrect.y;
+            if (Card1.x < 0) Card1.w = 0;
+            if (Card1.x > 0);
             while (SDL_PollEvent(&e) != 0)
             {
                 if (gCursorMenu.IsCursorInRect(&X1Rect) == SDL_TRUE)
                 {
-
                     if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
                     {
                         Cleanup3();
@@ -746,7 +753,6 @@ void MenuGame::Deckconstruction()
                 lastX = e.motion.x;
                 gWindowGameMenu3.DrawFull(Kaiba, &srcrect, &RectYugi);
                 gWindowGameMenu3.EndDraw();
-
             }
             SDL_DestroyTexture(X1);
         }
@@ -805,7 +811,6 @@ void MenuGame::Deckconstruction()
                 lastX = e.motion.x;
                 gWindowGameMenu3.DrawFull(Yugi, &srcrect, &RectYugi);
                 gWindowGameMenu3.EndDraw();
-
             }
             SDL_DestroyTexture(X1);
         }
@@ -864,7 +869,6 @@ void MenuGame::Deckconstruction()
                 lastX = e.motion.x;
                 gWindowGameMenu3.DrawFull(Jounochi, &srcrect, &RectYugi);
                 gWindowGameMenu3.EndDraw();
-
             }
             SDL_DestroyTexture(X1);
         }

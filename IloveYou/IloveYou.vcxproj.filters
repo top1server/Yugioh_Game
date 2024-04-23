@@ -50,9 +50,6 @@
     <ClInclude Include="MusicGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="collision.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MenuGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -1,7 +1,9 @@
-﻿  MenuGame.cpp
-C:\IloveYou\IloveYou\MenuGame.cpp(474,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\MenuGame.cpp(491,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\MenuGame.cpp(508,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\MenuGame.cpp(314,1): warning C4715: 'MenuGame::InitiationMenuState': not all control paths return a value
-C:\IloveYou\IloveYou\MenuGame.cpp(569,1): warning C4715: 'MenuGame::InitiationMenuMode': not all control paths return a value
+﻿  Game.cpp
+C:\IloveYou\IloveYou\Game.cpp(108,12): warning C4101: 'e': unreferenced local variable
+C:\IloveYou\IloveYou\Game.cpp(324,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\Game.cpp(394,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\Game.cpp(468,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\Game.cpp(542,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\Game.cpp(616,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\Game.cpp(189,6): warning C4101: 'Card_th': unreferenced local variable
   IloveYou.vcxproj -> C:\IloveYou\x64\Debug\IloveYou.exe
