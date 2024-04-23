@@ -105,7 +105,6 @@ void Game::CreateGame1()
 
 	IntGame();
 	
-
 	SDL_Event e;
 	while (WINDOW.IsDone())
 	{

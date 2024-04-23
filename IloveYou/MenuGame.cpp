@@ -571,7 +571,7 @@ ModeGame MenuGame::InitiationMenuMode()
 void MenuGame::Deckconstruction()
 {
     bool IsPlayed = false;
-    bool YugiDeck = false, KaibaDeck = false, JonouchiDeck = false;
+    bool YugiDeck = false, KaibaDeck = false, JounochiDeck = false;
     gVolumeMenu.Sound = 80;
     gVolumeMenu.Music = 40;
 
@@ -598,11 +598,15 @@ void MenuGame::Deckconstruction()
     SDL_Rect dstRect = { 720 , 405, 0, 0 };
 
     SDL_Texture* YugiDeckMenu = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images/Deck construction/1_1.png");
+    SDL_Texture* KaibaDeckMenu = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images/Deck construction/1_2.png");
+    SDL_Texture* JounochiDeckMenu = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images/Deck construction/1_3.png");
     SDL_QueryTexture(YugiDeckMenu, NULL, NULL, &Menu1Rect.w, &Menu1Rect.h);
 
-    SDL_Texture* Yugi = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images\\Deck construction\\\yugi.png");
-    
+    SDL_Texture* Yugi = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images/Deck construction/yugi.png");
+    SDL_Texture* Kaiba = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images/Deck construction/kaiba.png");
+    SDL_Texture* Jounochi = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images/Deck construction/jounochi.png");
     SDL_Rect RectYugi = { 20 + Menu1Rect.x , 280 + Menu1Rect.y , 830,335 };
+
     SDL_Rect srcrect = {0,0,830,335};
 
     bool quit = false;
@@ -632,9 +636,9 @@ void MenuGame::Deckconstruction()
             }
             IsPlayed = true;
         }
-        
+
         gWindowGameMenu3.Draw(Menu1, &Menu1Rect);
-        if (gCursorMenu.IsCursorInRect(&Chitiet1Rect) && !YugiDeck && !KaibaDeck && !JonouchiDeck)
+        if (gCursorMenu.IsCursorInRect(&Chitiet1Rect) && !YugiDeck && !KaibaDeck && !JounochiDeck)
         {
             SDL_Texture* Chitiet1 = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images/Deck construction/chitiet.png");
             SDL_QueryTexture(Chitiet1, NULL, NULL, &Chitiet1Rect.w, &Chitiet1Rect.h);
@@ -647,7 +651,7 @@ void MenuGame::Deckconstruction()
                 KaibaDeck = true;
             }
         }
-        else if (gCursorMenu.IsCursorInRect(&Chitiet2Rect) && !YugiDeck && !KaibaDeck && !JonouchiDeck)
+        else if (gCursorMenu.IsCursorInRect(&Chitiet2Rect) && !YugiDeck && !KaibaDeck && !JounochiDeck)
         {
             SDL_Texture* Chitiet1 = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images/Deck construction/chitiet.png");
             SDL_QueryTexture(Chitiet1, NULL, NULL, &Chitiet2Rect.w, &Chitiet2Rect.h);
@@ -660,7 +664,7 @@ void MenuGame::Deckconstruction()
                 YugiDeck = true;
             }
         }
-        else if (gCursorMenu.IsCursorInRect(&Chitiet3Rect) && !YugiDeck && !KaibaDeck && !JonouchiDeck)
+        else if (gCursorMenu.IsCursorInRect(&Chitiet3Rect) && !YugiDeck && !KaibaDeck && !JounochiDeck)
         {
             SDL_Texture* Chitiet1 = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images/Deck construction/chitiet.png");
             SDL_QueryTexture(Chitiet1, NULL, NULL, &Chitiet3Rect.w, &Chitiet3Rect.h);
@@ -670,10 +674,10 @@ void MenuGame::Deckconstruction()
             if (gTypeInput == TypeInputCursor::LEFT_CURSOR)
             {
                 gTypeInput = TypeInputCursor::WAIT_CURSOR;
-                JonouchiDeck = true;
+                JounochiDeck = true;
             }
         }
-        else if (gCursorMenu.IsCursorInRect(&XRect)&& !YugiDeck && !KaibaDeck && !JonouchiDeck)
+        else if (gCursorMenu.IsCursorInRect(&XRect) && !YugiDeck && !KaibaDeck && !JounochiDeck)
         {
             SDL_Texture* X = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images/Deck construction/x.png");
             SDL_QueryTexture(X, NULL, NULL, &XRect.w, &XRect.h);
@@ -684,27 +688,22 @@ void MenuGame::Deckconstruction()
             {
                 gTypeInput = TypeInputCursor::WAIT_CURSOR;
                 Cleanup3();
-                
+
             }
         }
         if (KaibaDeck)
         {
-
-
-        }
-        else if (YugiDeck)
-        {
             SDL_Texture* X1 = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images/Deck construction/x1.png");
             SDL_QueryTexture(X1, NULL, NULL, &X1Rect.w, &X1Rect.h);
 
-            if(Menu1 != NULL) SDL_DestroyTexture(Menu1);
-            gWindowGameMenu3.Draw(YugiDeckMenu,&Menu1Rect);
-            gWindowGameMenu3.DrawFull(Yugi,&srcrect, &RectYugi);
+            if (Menu1 != NULL) SDL_DestroyTexture(Menu1);
+            gWindowGameMenu3.Draw(KaibaDeckMenu, &Menu1Rect);
+            gWindowGameMenu3.DrawFull(Kaiba, &srcrect, &RectYugi);
 
             if (gCursorMenu.IsCursorInRect(&X1Rect) == SDL_TRUE)
             {
                 gWindowGameMenu3.Draw(X1, &X1Rect);
-                //SDL_DestroyTexture(X1);
+                SDL_DestroyTexture(X1);
             }
             gWindowGameMenu3.EndDraw();
 
@@ -712,11 +711,70 @@ void MenuGame::Deckconstruction()
             {
                 if (gCursorMenu.IsCursorInRect(&X1Rect) == SDL_TRUE)
                 {
-                    
+
                     if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
                     {
                         Cleanup3();
-                        InitiationMenuMode();
+                        Deckconstruction();
+                    }
+                }
+                else if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) {
+                    isScrolling = true;
+                    startX = e.button.x;
+                    startY = e.button.y;
+                    lastX = startX;
+                    lastY = startY;
+                }
+                else if (e.type == SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_LEFT)
+                {
+                    isScrolling = false;
+                }
+                else if (e.type == SDL_MOUSEMOTION && isScrolling)
+                {
+                    int dx = -e.motion.x + lastX;
+                    srcrect.x += dx;
+                    if (srcrect.x < 0)
+                    {
+                        srcrect.x = 0;
+                    }
+                    else if (srcrect.x > 5609 - 830)
+                    {
+                        srcrect.x = 5609 - 830;
+                    }
+                }
+
+                lastX = e.motion.x;
+                gWindowGameMenu3.DrawFull(Kaiba, &srcrect, &RectYugi);
+                gWindowGameMenu3.EndDraw();
+
+            }
+            SDL_DestroyTexture(X1);
+        }
+        else if (YugiDeck)
+        {
+            SDL_Texture* X1 = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images/Deck construction/x1.png");
+            SDL_QueryTexture(X1, NULL, NULL, &X1Rect.w, &X1Rect.h);
+
+            if (Menu1 != NULL) SDL_DestroyTexture(Menu1);
+            gWindowGameMenu3.Draw(YugiDeckMenu, &Menu1Rect);
+            gWindowGameMenu3.DrawFull(Yugi, &srcrect, &RectYugi);
+
+            if (gCursorMenu.IsCursorInRect(&X1Rect) == SDL_TRUE)
+            {
+                gWindowGameMenu3.Draw(X1, &X1Rect);
+                SDL_DestroyTexture(X1);
+            }
+            gWindowGameMenu3.EndDraw();
+
+            while (SDL_PollEvent(&e) != 0)
+            {
+                if (gCursorMenu.IsCursorInRect(&X1Rect) == SDL_TRUE)
+                {
+
+                    if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
+                    {
+                        Cleanup3();
+                        Deckconstruction();
                     }
                 }
                 else if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) {
@@ -751,6 +809,65 @@ void MenuGame::Deckconstruction()
             }
             SDL_DestroyTexture(X1);
         }
+        else if (JounochiDeck)
+        {
+            SDL_Texture* X1 = IMG_LoadTexture(gWindowGameMenu3.GetRenderer(), "images/Deck construction/x1.png");
+            SDL_QueryTexture(X1, NULL, NULL, &X1Rect.w, &X1Rect.h);
+
+            if (Menu1 != NULL) SDL_DestroyTexture(Menu1);
+            gWindowGameMenu3.Draw(JounochiDeckMenu, &Menu1Rect);
+            gWindowGameMenu3.DrawFull(Jounochi, &srcrect, &RectYugi);
+
+            if (gCursorMenu.IsCursorInRect(&X1Rect) == SDL_TRUE)
+            {
+                gWindowGameMenu3.Draw(X1, &X1Rect);
+                SDL_DestroyTexture(X1);
+            }
+            gWindowGameMenu3.EndDraw();
+
+            while (SDL_PollEvent(&e) != 0)
+            {
+                if (gCursorMenu.IsCursorInRect(&X1Rect) == SDL_TRUE)
+                {
+
+                    if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
+                    {
+                        Cleanup3();
+                        Deckconstruction();
+                    }
+                }
+                else if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT) {
+                    isScrolling = true;
+                    startX = e.button.x;
+                    startY = e.button.y;
+                    lastX = startX;
+                    lastY = startY;
+                }
+                else if (e.type == SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_LEFT)
+                {
+                    isScrolling = false;
+                }
+                else if (e.type == SDL_MOUSEMOTION && isScrolling)
+                {
+                    int dx = -e.motion.x + lastX;
+                    srcrect.x += dx;
+                    if (srcrect.x < 0)
+                    {
+                        srcrect.x = 0;
+                    }
+                    else if (srcrect.x > 5479 - 830)
+                    {
+                        srcrect.x = 5479 - 830;
+                    }
+                }
+
+                lastX = e.motion.x;
+                gWindowGameMenu3.DrawFull(Jounochi, &srcrect, &RectYugi);
+                gWindowGameMenu3.EndDraw();
+
+            }
+            SDL_DestroyTexture(X1);
+        }
         gWindowGameMenu3.EndDraw();
     }
 }
@@ -779,7 +896,6 @@ void MenuGame::CursorInput()
             {
                 gTypeInput = TypeInputCursor::RIGHT_CURSOR;
             }
-
             break;
         }
     }
