@@ -1,9 +1,11 @@
 ﻿  Game.cpp
 C:\IloveYou\IloveYou\Game.cpp(108,12): warning C4101: 'e': unreferenced local variable
-C:\IloveYou\IloveYou\Game.cpp(324,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(394,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(468,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(542,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(616,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(189,6): warning C4101: 'Card_th': unreferenced local variable
+C:\IloveYou\IloveYou\Game.cpp(356,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\Game.cpp(426,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\Game.cpp(498,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\Game.cpp(572,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\Game.cpp(646,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\Game.cpp(1764,19): warning C4553: '==': result of expression not used; did you intend '='?
+C:\IloveYou\IloveYou\Game.cpp(1840,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\IloveYou\IloveYou\Game.cpp(1907,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   IloveYou.vcxproj -> C:\IloveYou\x64\Debug\IloveYou.exe

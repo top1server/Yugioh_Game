@@ -30,7 +30,7 @@ void Start::StartAnimation()
                 quit = true;
             }
         }
-        SDL_RenderClear(gStartGame.GetRenderer());
+        gStartGame.RendererClear();
 
         clipRect.x = (frame % COLUMNS) * SPRITE_WIDTH;
         clipRect.y = (frame / COLUMNS) * SPRITE_HEIGHT;

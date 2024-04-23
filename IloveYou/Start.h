@@ -11,7 +11,7 @@ const int SPRITE_HEIGHT = 450;
 const int ROWS = 10;
 const int COLUMNS = 7;
 const int TOTAL_FRAMES = 69;
-const int FRAME_DELAY = 35;
+const int FRAME_DELAY = 20;
 
 class Start :WindowGame
 {
@@ -23,7 +23,6 @@ public:
 	bool isPlayMusic = false;
 	void RunMusic();
 	void StartAnimation();
-
 };
 
 #endif

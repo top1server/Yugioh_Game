@@ -22,8 +22,7 @@ class Game
 {
 private:
 	WindowGame WINDOW;
-	TurnPlayer BeginPlayer;
-	TurnPlayer TurnPlayer;
+	TurnPlayer Player;
 	StateMenu STATE;
 	ModeGame MODE;
 	MenuGame MENU;
@@ -71,11 +70,10 @@ public:
 	void HandleInput();
 	void CreateGame1();// PvP
 	void CreateGame2();// PvE
-	void OutPutMenuGame();
+	
 	StateMenu GetStateGame();
 	void DrawTurnPlayer();
 	int WinOrLose();
-
 };
 
 
