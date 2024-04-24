@@ -9,38 +9,33 @@ void Start::StartAnimation()
 
     SDL_Event e;
     bool quit = false;
-    int frame = 0;
-    SDL_Rect clipRect;
     RunMusic();
 
     while (!quit)
     {
+        gStartGame.RendererClear();
         while (SDL_PollEvent(&e) != 0)
         {
-            if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT && frame == 68)
+            if (e.type == SDL_QUIT)
+            {
+                quit = true;
+            }
+            else if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT && frame == 68)
             {
                 gStartGame.~WindowGame();
                 gStartMusic.Stop();
                 SDL_DestroyTexture(gSpriteSheet);
                 quit = true;
             }
-            
-            else if (e.type == SDL_QUIT)
-            {
-                quit = true;
-            }
         }
-        gStartGame.RendererClear();
-
         clipRect.x = (frame % COLUMNS) * SPRITE_WIDTH;
         clipRect.y = (frame / COLUMNS) * SPRITE_HEIGHT;
         clipRect.w = SPRITE_WIDTH;
         clipRect.h = SPRITE_HEIGHT;
 
-        SDL_RenderCopy(gStartGame.GetRenderer(), gSpriteSheet, &clipRect, NULL);
+        gStartGame.DrawFull(gSpriteSheet, &clipRect,NULL);
         gStartGame.EndDraw();
         frame++;
-
         if (frame == 69)
         {
             frame = 68;
@@ -51,6 +46,6 @@ void Start::StartAnimation()
 void Start::RunMusic()
 {
     gStartMusic.SetMusic("musics/start.mp3");
-    // gStartMusic.SetRepeat();
+    //gStartMusic.SetRepeat();
     gStartMusic.Play();
 }

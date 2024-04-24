@@ -35,6 +35,11 @@ private:
 	Volume VOLUME;
 	Start START;
 	TypeInputCursor CURSOR_INPUT;
+	
+	SDL_Texture* BackGround;
+	SDL_Texture* Undo;
+	SDL_Texture* Speed;
+	SDL_Texture* Option;
 
 	SDL_Texture* Card1;
 	SDL_Texture* Card2;
@@ -62,6 +67,16 @@ private:
 	SDL_Texture* Card24;
 	SDL_Texture* Card25;
 
+	SDL_Rect BGRect;
+	SDL_Rect UndoRect;
+	SDL_Rect SpeedRect;
+	SDL_Rect OptionRect;
+
+	int hand[7] = { 0 };        // tren tay
+	int handS[7] = { 0 }; //-1 : spell, -2 : trap;
+	int field[5] = { 0 }; // monster in field
+	int sp[5] = {0}; // spell in face
+	bool Start = true;
 public:
 	Game();
 	void IntGame();
@@ -70,9 +85,13 @@ public:
 	void HandleInput();
 	void CreateGame1();// PvP
 	void CreateGame2();// PvE
+	void RenderStart();
+	void LoadDeckYugi();
+	void Describe(std::vector<std::pair<int, SDL_Texture*>> vec , int i);
+	void SummonCard(int );
+	void DrawCard(std::vector<std::pair<int, SDL_Texture*>> vec, int i);
 	
 	StateMenu GetStateGame();
-	void DrawTurnPlayer();
 	int WinOrLose();
 };
 

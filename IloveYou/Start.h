@@ -19,6 +19,8 @@ private:
 	WindowGame gStartGame;
 	MusicGame gStartMusic;
 	SDL_Texture* gSpriteSheet;
+	int frame = 0;
+	SDL_Rect clipRect;
 public:
 	bool isPlayMusic = false;
 	void RunMusic();
