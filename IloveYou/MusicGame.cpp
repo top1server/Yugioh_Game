@@ -3,7 +3,7 @@
 MusicGame::MusicGame() 
 {
     gRepeatMusic = false;
-    gVolumeMusic = 100;
+    gVolumeMusic = 40;
     gStateMusic = stateMusic::STOP;
     gMusic = NULL;
 }

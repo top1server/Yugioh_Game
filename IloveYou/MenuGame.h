@@ -51,9 +51,11 @@ public:
     void RunCursorAndMusicAndSound1();
     void RunCursorAndMusicAndSound2();
     void RunCursorAndMusicAndSound3();
+    void RunCursorAndMusicAndSound4();
     ModeGame InitiationMenuMode();
     StateMenu InitiationMenuState();
     void Deckconstruction();
+    void Option();
     void CursorInput();
     void Render();
     void Cleanup1();
@@ -82,6 +84,7 @@ private:
     WindowGame gWindowGameMenu1;
     WindowGame gWindowGameMenu2;
     WindowGame gWindowGameMenu3;
+    WindowGame gWindowGameMenu4;
     Volume gVolumeMenu;
     Cursor gCursorMenu;
     MusicGame gMusicMenu;

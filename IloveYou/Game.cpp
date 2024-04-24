@@ -301,6 +301,11 @@ void Game::HandleInput()
     {
         MENU.Deckconstruction();
     }
+    else if (temp == StateMenu::OPTION_GAME)
+    {
+        MENU.Option();
+    }
+
 }
 void Game::CreateGame1()
 {

@@ -1,44 +1,9 @@
-﻿  Game.cpp
-C:\IloveYou\IloveYou\Game.cpp(312,15): warning C4101: 'e': unreferenced local variable
-C:\IloveYou\IloveYou\Game.cpp(463,30): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(497,30): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(534,30): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(573,30): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(613,30): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(796,34): warning C4553: '==': result of expression not used; did you intend '='?
-C:\IloveYou\IloveYou\Game.cpp(837,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(869,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(900,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(931,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(962,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1053,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1084,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1115,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1146,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1177,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1251,60): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1283,60): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1315,60): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1346,60): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1378,60): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1453,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1485,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1517,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1549,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1581,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1657,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1689,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1721,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1753,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1785,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1860,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1892,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1924,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1956,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(1988,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(2062,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(2094,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(2126,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(2158,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\IloveYou\IloveYou\Game.cpp(2190,56): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+﻿  MenuGame.cpp
+C:\IloveYou\IloveYou\MenuGame.cpp(496,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\MenuGame.cpp(513,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\MenuGame.cpp(530,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\MenuGame.cpp(739,29): warning C4390: ';': empty controlled statement found; is this the intent?
+C:\IloveYou\IloveYou\MenuGame.cpp(1049,28): warning C4553: '==': result of expression not used; did you intend '='?
+C:\IloveYou\IloveYou\MenuGame.cpp(336,1): warning C4715: 'MenuGame::InitiationMenuState': not all control paths return a value
+C:\IloveYou\IloveYou\MenuGame.cpp(591,1): warning C4715: 'MenuGame::InitiationMenuMode': not all control paths return a value
   IloveYou.vcxproj -> C:\IloveYou\x64\Debug\IloveYou.exe

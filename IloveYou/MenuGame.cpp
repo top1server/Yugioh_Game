@@ -9,28 +9,6 @@ MenuGame::~MenuGame()
     Cleanup1();
 }
 
-void MenuGame::RunCursorAndMusicAndSound2()
-{
-    // Creat window and icon game
-    gWindowGameMenu2.SetUp("MAGIC DUEL", SCREEN_WIDTH, SCREEN_HEIGHT);
-    SDL_Surface* iconSurface = IMG_Load("images/icon/icon1.png");
-    SDL_SetWindowIcon(gWindowGameMenu2.GetWindow(), iconSurface);
-
-    // Load music menu
-    gMusicMenu.SetMusic("musics/choosemode.mp3");
-    gMusicMenu.SetRepeat();
-    gMusicMenu.Play();
-
-    // Load cursor click sound
-    gSoundMenu.SetSoundBuffer("musics/sound.mp3");
-    gSoundMenu.ChangeVolumeSound(45);
-
-    // Cursor
-    gCursorMenu.SetImageDefault("images/mouse/mouse1.png");
-    gCursorMenu.DrawCursorDefault();
-    gCursorMenu.SetImageCustom("images/mouse/cursor1.png");
-}
-
 void MenuGame::RunCursorAndMusicAndSound1()
 {
     // Creat window and icon game
@@ -45,6 +23,27 @@ void MenuGame::RunCursorAndMusicAndSound1()
 
     // Load cursor click sound
     gSoundMenu.SetSoundBuffer("musics//ClickCursor.mp3");
+    gSoundMenu.ChangeVolumeSound(45);
+
+    // Cursor
+    gCursorMenu.SetImageDefault("images/mouse/mouse1.png");
+    gCursorMenu.DrawCursorDefault();
+    gCursorMenu.SetImageCustom("images/mouse/cursor1.png");
+}
+
+void MenuGame::RunCursorAndMusicAndSound2()
+{
+    gWindowGameMenu2.SetUp("MAGIC DUEL", SCREEN_WIDTH, SCREEN_HEIGHT);
+    SDL_Surface* iconSurface = IMG_Load("images/icon/icon1.png");
+    SDL_SetWindowIcon(gWindowGameMenu2.GetWindow(), iconSurface);
+
+    // Load music menu
+    gMusicMenu.SetMusic("musics/choosemode.mp3");
+    gMusicMenu.SetRepeat();
+    gMusicMenu.Play();
+
+    // Load cursor click sound
+    gSoundMenu.SetSoundBuffer("musics/sound.mp3");
     gSoundMenu.ChangeVolumeSound(45);
 
     // Cursor
@@ -74,6 +73,29 @@ void MenuGame::RunCursorAndMusicAndSound3()
     gCursorMenu.DrawCursorDefault();
     gCursorMenu.SetImageCustom("images/mouse/cursor1.png");
 }
+
+void MenuGame::RunCursorAndMusicAndSound4()
+{
+    // Creat window and icon game
+    gWindowGameMenu4.SetUp("MAGIC DUEL", SCREEN_WIDTH, SCREEN_HEIGHT);
+    SDL_Surface* iconSurface = IMG_Load("images/icon/icon1.png");
+    SDL_SetWindowIcon(gWindowGameMenu3.GetWindow(), iconSurface);
+
+    // Load music menu
+    gMusicMenu.SetMusic("musics/1.mp3");
+    gMusicMenu.SetRepeat();
+    gMusicMenu.Play();
+
+    // Load cursor click sound
+    gSoundMenu.SetSoundBuffer("musics//ClickCursor.mp3");
+    gSoundMenu.ChangeVolumeSound(45);
+
+    // Cursor
+    gCursorMenu.SetImageDefault("images/mouse/mouse1.png");
+    gCursorMenu.DrawCursorDefault();
+    gCursorMenu.SetImageCustom("images/mouse/cursor1.png");
+}
+
 StateMenu MenuGame::InitiationMenuState()
 {
     gVolumeMenu.Sound = 70;
@@ -873,6 +895,176 @@ void MenuGame::Deckconstruction()
             SDL_DestroyTexture(X1);
         }
         gWindowGameMenu3.EndDraw();
+    }
+}
+
+void MenuGame::Option()
+{
+    gVolumeMenu.Sound = 40;
+    gVolumeMenu.Music = 40;
+    RunCursorAndMusicAndSound4();
+
+    SDL_Texture* OptionMenu = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/optionmenu.jpg");
+    SDL_Rect OptionMenuRect = { 0 , 0 , 0 , 0 };
+    SDL_QueryTexture(OptionMenu, NULL, NULL, &OptionMenuRect.w, &OptionMenuRect.h);
+
+    SDL_Texture* OptionTable = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/optiontable.png");
+    SDL_Rect OptionTableRect;
+
+    SDL_QueryTexture(OptionTable, NULL, NULL, &OptionTableRect.w, &OptionTableRect.h);
+    OptionTableRect.x = (1440 - OptionTableRect.w) / 2;
+    OptionTableRect.y = -250;
+
+    SDL_Texture* Move1 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/move.png");
+    SDL_Texture* Move2 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/move.png");
+    SDL_Rect MoveRect1 = { 651 , 250 + 121 , 20 , 14 };
+    SDL_Rect MoveRect2 = { 651 , 250 + 121 + 46 , 20 , 14 };
+    const int DEST_X1 = OptionTableRect.x;
+    const int DEST_Y1 = 250;
+    bool Start = true;
+
+    bool isScrolling = false;
+    int startX = 0;
+    int startY = 250;
+    int lastX = 0;
+    int lastY = 0;
+
+    bool isScrolling1 = false;
+    int startX1 = 0;
+    int startY1 = 250;
+    int lastX1 = 0;
+    int lastY1 = 0;
+
+    SDL_Event e;
+
+    SDL_Rect ChooseButtonRect = { DEST_X1 + 213,DEST_Y1 + 188,62,62 };
+    gTypeInput = TypeInputCursor::WAIT_CURSOR;
+
+    SDL_Texture* Music1 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1.png");
+    SDL_Texture* Music2 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/2.png");
+    SDL_Texture* Music3 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/3.png");
+    SDL_Texture* Music4 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/4.png");
+    SDL_Texture* Music5 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/5.png");
+    SDL_Texture* Music6 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/6.png");
+    SDL_Texture* Music7 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/7.png");
+    SDL_Texture* Music8 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/8.png");
+    SDL_Texture* Music9 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/9.png");
+    SDL_Texture* Music1C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1 - Copy.png");
+    SDL_Texture* Music2C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/2 - Copy.png");
+    SDL_Texture* Music3C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/3 - Copy.png");
+    SDL_Texture* Music4C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/4 - Copy.png");
+    SDL_Texture* Music5C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/5 - Copy.png");
+    SDL_Texture* Music6C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/6 - Copy.png");
+    SDL_Texture* Music7C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/7 - Copy.png");
+    SDL_Texture* Music8C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/8 - Copy.png");
+    SDL_Texture* Music9C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/9 - Copy.png");
+
+    SDL_Rect M1 = {};
+    SDL_Rect M2 = {};
+    SDL_Rect M3 = {};
+    SDL_Rect M4 = {};
+    SDL_Rect M5 = {};
+    SDL_Rect M6 = {};
+    SDL_Rect M7 = {};
+    SDL_Rect M8 = {};
+    SDL_Rect M9 = {};
+    while (gWindowGameMenu4.IsDone())
+    {
+        gWindowGameMenu4.RendererClear();
+        gWindowGameMenu4.Draw(OptionMenu, &OptionMenuRect);
+
+        if (Start)
+        {
+            for (int i = 0; i <= 500; i += 1)
+            {
+                gWindowGameMenu4.RendererClear();
+                gWindowGameMenu4.Draw(OptionMenu, &OptionMenuRect);
+                OptionTableRect.y += 1;
+                gWindowGameMenu4.Draw(OptionTable, &OptionTableRect);
+                gWindowGameMenu4.EndDraw();
+            }
+            Start = false;
+        }
+
+        gWindowGameMenu4.Draw(OptionTable, &OptionTableRect);
+        gWindowGameMenu4.Draw(Move1, &MoveRect1);
+        gWindowGameMenu4.Draw(Move2, &MoveRect2);
+        while (SDL_PollEvent(&e))
+        {
+            if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT && gCursorMenu.IsCursorInRect(&MoveRect1)) {
+                isScrolling = true;
+                startX = e.button.x;
+                startY = e.button.y;
+                lastX = startX;
+                lastY = startY;
+            }
+            else if (e.type == SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_LEFT)
+            {
+                isScrolling = false;
+            }
+            else if (e.type == SDL_MOUSEMOTION && isScrolling)
+            {
+                int dx = e.motion.x - lastX;
+                MoveRect1.x += dx;
+                if (MoveRect1.x < 651)
+                {
+                    MoveRect1.x = 651;
+                }
+                else if (MoveRect1.x > 900)
+                {
+                    MoveRect1.x = 900;
+                }
+            }
+            if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT && gCursorMenu.IsCursorInRect(&MoveRect2)) {
+                isScrolling1 = true;
+                startX1 = e.button.x;
+                startY1 = e.button.y;
+                lastX1 = startX;
+                lastY1 = startY;
+            }
+            else if (e.type == SDL_MOUSEBUTTONUP && e.button.button == SDL_BUTTON_LEFT)
+            {
+                isScrolling1 = false;
+            }
+            else if (e.type == SDL_MOUSEMOTION && isScrolling1)
+            {
+                int dx = e.motion.x - lastX1;
+                MoveRect2.x += dx;
+                if (MoveRect2.x < 651)
+                {
+                    MoveRect2.x = 651;
+                }
+                else if (MoveRect2.x > 900)
+                {
+                    MoveRect2.x = 900;
+                }
+            }
+            gMusicMenu.ChangeVolume((int)(40+1.0*(MoveRect1.x-651)*88 / 249)) ;
+            gSoundMenu.ChangeVolumeSound((int)(40 + 1.0 * (MoveRect1.x - 651) * 88/249));
+            lastX = e.motion.x;
+            lastX1 = e.motion.x;
+            gWindowGameMenu4.Draw(Move1, &MoveRect1);
+            gWindowGameMenu4.Draw(Move2, &MoveRect2);
+        }
+        
+        if (gCursorMenu.IsCursorInRect(&ChooseButtonRect))
+        {
+            SDL_Texture* ChooseButton = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/button.png");
+            gWindowGameMenu4.Draw(ChooseButton, &ChooseButtonRect);
+            SDL_DestroyTexture(ChooseButton);
+            CursorInput();
+            if (gTypeInput == TypeInputCursor::LEFT_CURSOR)
+            {
+                gTypeInput == TypeInputCursor::WAIT_CURSOR;
+                SDL_DestroyTexture(OptionTable);
+                SDL_DestroyTexture(Move1);
+                SDL_DestroyTexture(Move2);
+                ChooseButtonRect.w = 0;
+
+            }
+        }
+
+        gWindowGameMenu4.EndDraw();
     }
 }
 
