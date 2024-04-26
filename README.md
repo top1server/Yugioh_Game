@@ -59,7 +59,7 @@
 
 #### *Cửa sổ hiển thị thắng hay thua*
 ![](IloveYou/images/win.png)
-
+#
 ![](IloveYou/images/loss.png)
 
 ## **Objects In game**
@@ -81,30 +81,30 @@ Có 3 loại lá bài: bài quái thú(monster), bài ma pháp(spell) và bài b
 
 + 17 lá bài ma pháp
 
-![image](ILoveYou/images/Yugi/9.png)
-![image](ILoveYou/images/Yugi/10.png)
-![image](ILoveYou/images/Yugi/11.png)
-![image](ILoveYou/images/Yugi/12.png)
-![image](ILoveYou/images/Yugi/13.png)
-![image](ILoveYou/images/Yugi/14.png)
-![image](ILoveYou/images/Yugi/15.png)
-![image](ILoveYou/images/Yugi/16.png)
-![image](ILoveYou/images/Yugi/17.png)
-![image](ILoveYou/images/Yugi/18.png)
-![image](ILoveYou/images/Yugi/19.png)
-![image](ILoveYou/images/Yugi/20.png)
-![image](ILoveYou/images/Yugi/21.png)
-![image](ILoveYou/images/Yugi/22.png)
-![image](ILoveYou/images/Yugi/23.png)
-![image](ILoveYou/images/Yugi/24.png)
-![image](ILoveYou/images/Yugi/25.png)
+![image](IloveYou/images/Yugi/9.png)
+![image](IloveYou/images/Yugi/10.png)
+![image](IloveYou/images/Yugi/11.png)
+![image](IloveYou/images/Yugi/12.png)
+![image](IloveYou/images/Yugi/13.png)
+![image](IloveYou/images/Yugi/14.png)
+![image](IloveYou/images/Yugi/15.png)
+![image](IloveYou/images/Yugi/16.png)
+![image](IloveYou/images/Yugi/17.png)
+![image](IloveYou/images/Yugi/18.png)
+![image](IloveYou/images/Yugi/19.png)
+![image](IloveYou/images/Yugi/20.png)
+![image](IloveYou/images/Yugi/21.png)
+![image](IloveYou/images/Yugi/22.png)
+![image](IloveYou/images/Yugi/23.png)
+![image](IloveYou/images/Yugi/24.png)
+![image](IloveYou/images/Yugi/25.png)
 
 
 
 ## **Setup**
 - Yêu cầu : có trình biên dịch C++ compiler(codeblock , vscode,visual studio,...).
     1. git clone về máy $ git clone https://github.com/top1server/TDcoDH
-    2. trên trình biên dịch(em dùng visual studio, mở file ILoveYou.snl)
+    2. trên trình biên dịch(em dùng visual studio, mở file IloveYou.snl)
     3. Toàn bộ các file của project hiện ra, bấm build(F5) để chạy game
 - *Mọi khó khăn trong phần cài đặt, trong quá trình chơi, vui lòng liên hệ qua 23020025@vnu.edu.vn.Em sẽ luôn nghe và phản hồi lại ý kiến góp ý của mọi người để phát triển tiếp project game này*
 
