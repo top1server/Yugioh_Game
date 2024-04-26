@@ -41,24 +41,24 @@
 
 ### *Preview*
 #### *Cửa sổ hiển thị Menu game gồm 5 lựa chọn: Duel mode- Chế độ chơi,Deck Construction- Xây dựng bộ bài,CardList- Danh sách lá bài, Option- Âm thanh, nhạc, Quit- Thoát game *
-![image](IloveYou/IloveYou/images/D_Menu.png)
+![](IloveYou/images/D_Menu.png)
 
 #### *Cửa sổ hiện thị hướng dẫn cơ bản các thuộc tính trong Game và cách chơi game*
-![image](IloveYou/IloveYou/images/mt1.jpg)
-![](IloveYou/IloveYou/images/mt2.jpg)
+![](IloveYou/images/mt1.jpg)
+![](IloveYou/images/mt2.jpg)
 
 #### *Cửa sổ hiển thị âm lượng tùy chỉnh và bài hát*
-![](IloveYou/IloveYou/images/option/D_Option.jpg)
+![](IloveYou/images/option/D_Option.jpg)
 
 #### *Cửa sổ hiện thị màn hình sẵn sàng chơi Game, nhấn đúp chuột để vào trận*
-![](IloveYou/IloveYou/images/ss.png)
+![](IloveYou/images/ss.png)
 
 #### *Cửa sổ trò chơi*
-![](IloveYou/IloveYou/images/map.png)
+![](IloveYou/images/map.png)
 
 #### *Cửa sổ hiển thị thắng hay thua*
-![](IloveYou/IloveYou/images/win.png)
-![](IloveYou/IloveYou/images/loss.png)
+![](IloveYou/images/win.png)
+![](IloveYou/images/loss.png)
 
 ## **Objects In game**
 
