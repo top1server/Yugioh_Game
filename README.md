@@ -66,38 +66,7 @@
 
 ## a. Các loại lá bài
 Có 3 loại lá bài: bài quái thú(monster), bài ma pháp(spell) và bài bẫy(trap), bộ bài được xây dựng có 40 lá gồm 18 lá bài quái thú(trong đó có 8 quái thú khác nhau), 22 lá bài phép bẫy(trong đó có 17 lá phép bẫy khác nhau)
-+ 8 lá quái thú sẽ mang lại chiến thắng cho bạn là: 
-
-|                                         | Tên lá bài	       | Thông tin                                                                                        |
-|-----------------------------------------|--------------------|--------------------------------------------------------------------------------------------------|
-| ![image](IloveYou/images/Yugi/1.png) | Phù thủy bóng đêm  | ATK: 2500, DEF: 2100, 7 sao |
-| ![image](IloveYou/images/Yugi/2.png) | Nữ phù thủy bóng đêm| ATK: 2000, DEF: 1700, 6 sao|
-| ![image](IloveYou/images/Yugi/3.png)   | Yêu tinh thần đèn	   | ATK: 1800, DEF: 1000, 4 sao|
-| ![image](IloveYou/images/Yugi/4.png) | Ảo thật gia	 | ATK: 2000, DEF: 1200, 5 sao|
-| ![image](IloveYou/images/Yugi/5.png)   | Phù thủy rừng đen| ATK: 1100, DEF: 1200, 4 sao |
-| ![image](IloveYou/images/Yugi/6.png)   | Cà chua thần bí| ATK: 1400, DEF: 1000, 4 sao |
-| ![image](IloveYou/images/Yugi/7.png)   | Song sinh| ATK: 1700, DEF: 1650, 4 sao |
-| ![image](IloveYou/images/Yugi/8.png)   | Kiếm sĩ diệt rồng| ATK: 2600, DEF: 2300, 8 sao |
-
-+ 17 lá bài ma pháp
-
-![image](ILoveYou/images/Yugi/9.png)
-![image](ILoveYou/images/Yugi/10.png)
-![image](ILoveYou/images/Yugi/11.png)
-![image](ILoveYou/images/Yugi/12.png)
-![image](ILoveYou/images/Yugi/13.png)
-![image](ILoveYou/images/Yugi/14.png)
-![image](ILoveYou/images/Yugi/15.png)
-![image](ILoveYou/images/Yugi/16.png)
-![image](ILoveYou/images/Yugi/17.png)
-![image](ILoveYou/images/Yugi/18.png)
-![image](ILoveYou/images/Yugi/19.png)
-![image](ILoveYou/images/Yugi/20.png)
-![image](ILoveYou/images/Yugi/21.png)
-![image](ILoveYou/images/Yugi/22.png)
-![image](ILoveYou/images/Yugi/23.png)
-![image](ILoveYou/images/Yugi/24.png)
-![image](ILoveYou/images/Yugi/25.png)
++ 8 lá quái thú sẽ mang lại chiến thắnIloveYou/images/Yugi/25.png)
 
 
 
