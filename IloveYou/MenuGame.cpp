@@ -17,7 +17,7 @@ void MenuGame::RunCursorAndMusicAndSound1()
     SDL_SetWindowIcon(gWindowGameMenu1.GetWindow(), iconSurface);
 
     // Load music menu
-    gMusicMenu.SetMusic("musics//MenuMusic.wav");
+    gMusicMenu.SetMusic("musics//MenuMusic.mp3");
     gMusicMenu.SetRepeat();
     gMusicMenu.Play();
 

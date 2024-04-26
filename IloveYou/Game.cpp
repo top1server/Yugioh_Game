@@ -446,9 +446,9 @@ void Game::CreateGame2()
     std::vector<Monster> InSpell_TrapEnemy(50);
 
     SDL_Texture* Win = IMG_LoadTexture(WINDOW.GetRenderer(), "images/win.png");
+    SDL_Texture* Loss = IMG_LoadTexture(WINDOW.GetRenderer(), "images/loss.png");
     // InHand.clear();
     // InField.clear();
-
     bool Start = true;
     int Card_th = 0;
     int x, y;
@@ -1856,7 +1856,9 @@ void Game::CreateGame2()
             NumMonsterInFieldEnemy = 0;
             NumSpellTrapInField = 0;
             SDL_Rect src = { 120, 200, 1200, 546 };
-            WINDOW.Draw(Win, &src);
+            if (WinOrLose == 2)
+                WINDOW.Draw(Win, &src);
+            else WINDOW.Draw(Loss, &src);
             SDL_Rect Back = { 638, 680, 150, 70 };
             if (CURSOR.IsCursorInRect(&Back))
             {

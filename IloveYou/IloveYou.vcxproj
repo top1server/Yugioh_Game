@@ -149,7 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="Start.h" />
     <ClInclude Include="MenuGame.h" />
     <ClInclude Include="Cursor.h" />
