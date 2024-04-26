@@ -45,6 +45,7 @@
 
 #### *Cửa sổ hiện thị hướng dẫn cơ bản các thuộc tính trong Game và cách chơi game*
 ![](IloveYou/images/mt1.jpg)
+
 ![](IloveYou/images/mt2.jpg)
 
 #### *Cửa sổ hiển thị âm lượng tùy chỉnh và bài hát*
@@ -58,6 +59,7 @@
 
 #### *Cửa sổ hiển thị thắng hay thua*
 ![](IloveYou/images/win.png)
+
 ![](IloveYou/images/loss.png)
 
 ## **Objects In game**
@@ -68,34 +70,34 @@ Có 3 loại lá bài: bài quái thú(monster), bài ma pháp(spell) và bài b
 
 |                                         | Tên lá bài	       | Thông tin                                                                                        |
 |-----------------------------------------|--------------------|--------------------------------------------------------------------------------------------------|
-| ![image](IloveYou/IloveYou/images/Yugi/1.png) | Phù thủy bóng đêm  | ATK: 2500, DEF: 2100, 7 sao |
-| ![image](IloveYou/IloveYou/images/Yugi/2.png) | Nữ phù thủy bóng đêm| ATK: 2000, DEF: 1700, 6 sao|
-| ![image](IloveYou/IloveYou/images/Yugi/3.png)   | Yêu tinh thần đèn	   | ATK: 1800, DEF: 1000, 4 sao|
-| ![image](IloveYou/IloveYou/images/Yugi/4.png) | Ảo thật gia	 | ATK: 2000, DEF: 1200, 5 sao|
-| ![image](IloveYou/IloveYou/images/Yugi/5.png)   | Phù thủy rừng đen| ATK: 1100, DEF: 1200, 4 sao |
-| ![image](IloveYou/IloveYou/images/Yugi/6.png)   | Cà chua thần bí| ATK: 1400, DEF: 1000, 4 sao |
-| ![image](IloveYou/IloveYou/images/Yugi/7.png)   | Song sinh| ATK: 1700, DEF: 1650, 4 sao |
-| ![image](IloveYou/IloveYou/images/Yugi/8.png)   | Kiếm sĩ diệt rồng| ATK: 2600, DEF: 2300, 8 sao |
+| ![image](IloveYou/images/Yugi/1.png) | Phù thủy bóng đêm  | ATK: 2500, DEF: 2100, 7 sao |
+| ![image](IloveYou/images/Yugi/2.png) | Nữ phù thủy bóng đêm| ATK: 2000, DEF: 1700, 6 sao|
+| ![image](IloveYou/images/Yugi/3.png)   | Yêu tinh thần đèn	   | ATK: 1800, DEF: 1000, 4 sao|
+| ![image](IloveYou/images/Yugi/4.png) | Ảo thật gia	 | ATK: 2000, DEF: 1200, 5 sao|
+| ![image](IloveYou/images/Yugi/5.png)   | Phù thủy rừng đen| ATK: 1100, DEF: 1200, 4 sao |
+| ![image](IloveYou/images/Yugi/6.png)   | Cà chua thần bí| ATK: 1400, DEF: 1000, 4 sao |
+| ![image](IloveYou/images/Yugi/7.png)   | Song sinh| ATK: 1700, DEF: 1650, 4 sao |
+| ![image](IloveYou/images/Yugi/8.png)   | Kiếm sĩ diệt rồng| ATK: 2600, DEF: 2300, 8 sao |
 
 + 17 lá bài ma pháp
 
-![image](IloveYou/IloveYou/images/Yugi/9.png)
-![image](IloveYou/IloveYou/images/Yugi/10.png)
-![image](IloveYou/IloveYou/images/Yugi/11.png)
-![image](IloveYou/IloveYou/images/Yugi/12.png)
-![image](IloveYou/IloveYou/images/Yugi/13.png)
-![image](IloveYou/IloveYou/images/Yugi/14.png)
-![image](IloveYou/IloveYou/images/Yugi/15.png)
-![image](IloveYou/IloveYou/images/Yugi/16.png)
-![image](IloveYou/IloveYou/images/Yugi/17.png)
-![image](IloveYou/IloveYou/images/Yugi/18.png)
-![image](IloveYou/IloveYou/images/Yugi/19.png)
-![image](IloveYou/IloveYou/images/Yugi/20.png)
-![image](IloveYou/IloveYou/images/Yugi/21.png)
-![image](IloveYou/IloveYou/images/Yugi/22.png)
-![image](IloveYou/IloveYou/images/Yugi/23.png)
-![image](IloveYou/IloveYou/images/Yugi/24.png)
-![image](IloveYou/IloveYou/images/Yugi/25.png)
+![image](ILoveYou/images/Yugi/9.png)
+![image](ILoveYou/images/Yugi/10.png)
+![image](ILoveYou/images/Yugi/11.png)
+![image](ILoveYou/images/Yugi/12.png)
+![image](ILoveYou/images/Yugi/13.png)
+![image](ILoveYou/images/Yugi/14.png)
+![image](ILoveYou/images/Yugi/15.png)
+![image](ILoveYou/images/Yugi/16.png)
+![image](ILoveYou/images/Yugi/17.png)
+![image](ILoveYou/images/Yugi/18.png)
+![image](ILoveYou/images/Yugi/19.png)
+![image](ILoveYou/images/Yugi/20.png)
+![image](ILoveYou/images/Yugi/21.png)
+![image](ILoveYou/images/Yugi/22.png)
+![image](ILoveYou/images/Yugi/23.png)
+![image](ILoveYou/images/Yugi/24.png)
+![image](ILoveYou/images/Yugi/25.png)
 
 
 
