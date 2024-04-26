@@ -6,7 +6,7 @@ MenuGame::MenuGame()
 }
 MenuGame::~MenuGame()
 {
-    Cleanup1();
+    Cleanup2();
 }
 
 void MenuGame::RunCursorAndMusicAndSound1()
@@ -16,7 +16,6 @@ void MenuGame::RunCursorAndMusicAndSound1()
     SDL_Surface* iconSurface = IMG_Load("images/icon/icon1.png");
     SDL_SetWindowIcon(gWindowGameMenu1.GetWindow(), iconSurface);
 
-    // Load music menu
     gMusicMenu.SetMusic("musics//MenuMusic.mp3");
     gMusicMenu.SetRepeat();
     gMusicMenu.Play();
