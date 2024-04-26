@@ -100,7 +100,6 @@ Có 3 loại lá bài: bài quái thú(monster), bài ma pháp(spell) và bài b
 ![image](IloveYou/images/Yugi/25.png)
 
 
-
 ## **Setup**
 - Yêu cầu : có trình biên dịch C++ compiler(codeblock , vscode,visual studio,...).
     1. git clone về máy $ git clone https://github.com/top1server/TDcoDH
