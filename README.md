@@ -32,7 +32,7 @@
 ## **Description** 
 ### *Game description and instruction* 
 
-- Video demo :
+- Video demo : https://youtu.be/Q2aN2Eg0Ftk
 ### *Control* 
 
 - **Con trỏ chuột trái**: Chọn nút.
