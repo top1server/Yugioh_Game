@@ -1,8 +1,28 @@
-﻿  main.cpp
-C:\IloveYou\IloveYou\main.cpp(68,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+﻿  Game.cpp
+C:\IloveYou\IloveYou\Game.cpp(266,15): warning C4101: 'e': unreferenced local variable
+C:\IloveYou\IloveYou\Game.cpp(421,34): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\Game.cpp(511,34): warning C4553: '==': result of expression not used; did you intend '='?
+C:\IloveYou\IloveYou\Game.cpp(542,50): warning C4553: '==': result of expression not used; did you intend '='?
+C:\IloveYou\IloveYou\Game.cpp(559,60): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\IloveYou\IloveYou\Game.cpp(605,50): warning C4553: '==': result of expression not used; did you intend '='?
+C:\IloveYou\IloveYou\Game.cpp(623,60): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Player.cpp
+  Start.cpp
+  MenuGame.cpp
+C:\IloveYou\IloveYou\MenuGame.cpp(496,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\MenuGame.cpp(513,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\MenuGame.cpp(530,26): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\IloveYou\IloveYou\MenuGame.cpp(739,29): warning C4390: ';': empty controlled statement found; is this the intent?
+C:\IloveYou\IloveYou\MenuGame.cpp(1085,28): warning C4553: '==': result of expression not used; did you intend '='?
+  Cursor.cpp
+  SoundGame.cpp
+  WindowGame.cpp
+  main.cpp
+  MusicGame.cpp
   Generating code
-  1 of 17 functions ( 5.9%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  Compiler switch has changed, fall back to full compilation.
+C:\IloveYou\IloveYou\MenuGame.cpp(591): warning C4715: 'MenuGame::InitiationMenuMode': not all control paths return a value
+C:\IloveYou\IloveYou\MenuGame.cpp(336): warning C4715: 'MenuGame::InitiationMenuState': not all control paths return a value
+  All 276 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   IloveYou.vcxproj -> C:\IloveYou\x64\Release\IloveYou.exe

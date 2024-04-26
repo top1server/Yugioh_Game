@@ -61,9 +61,7 @@ public:
     void Cleanup1();
     void Cleanup2();
     void Cleanup3();
-    
     int isSoundPlayed = 0;
- 
     ModeGame GetModeGame()
     {
         return gModeGameMenu;
@@ -81,6 +79,7 @@ private:
     const int DEST_Y1 = 220;
     const int DEST_X2 = 970;
     const int DEST_Y2 = 220;
+
     WindowGame gWindowGameMenu1;
     WindowGame gWindowGameMenu2;
     WindowGame gWindowGameMenu3;
@@ -92,6 +91,20 @@ private:
     StateMenu gStateGameMenu;
     ModeGame gModeGameMenu;
     TypeInputCursor gTypeInput;
+    TTF_Font* gFont = NULL;
+    SDL_Texture* LoadTextTexture(const char* text, SDL_Color color) {
+        SDL_Surface* textSurface = TTF_RenderText_Solid(gFont, text, color);
+        if (textSurface == NULL) {
+            printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
+            return NULL;
+        }
+        SDL_Texture* textTexture = SDL_CreateTextureFromSurface(gWindowGameMenu4.GetRenderer(), textSurface);
+        if (textTexture == NULL) {
+            printf("Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError());
+        }
+        SDL_FreeSurface(textSurface);
+        return textTexture;
+    }
 };
 
 #endif

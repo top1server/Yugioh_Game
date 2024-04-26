@@ -43,6 +43,15 @@ void WindowGame::Create() {
         std::cerr << "Renderer could not be created! Error :" << SDL_GetError() << std::endl;
 
     }
+    if (TTF_Init() == -1) {
+        printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+        return;
+    }
+    gFont = TTF_OpenFont("font/DFVN West West Condensed.ttf", 28);
+    if (gFont == NULL) {
+        std::cerr << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
+        return;
+    }
     int imgFlags = IMG_INIT_PNG;
     if (!(IMG_Init(imgFlags) & imgFlags))
     {

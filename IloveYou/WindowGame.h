@@ -9,7 +9,7 @@
 
 const int SCREEN_WIDTH = 1440;
 const int SCREEN_HEIGHT = 810;
-
+const double angle = 45.0;
 class WindowGame
 {   
 private:
@@ -19,6 +19,7 @@ private:
     std::string gWindowTitle;
     bool gIsFullScreen;
     bool gIsDone;
+    TTF_Font* gFont;
 public:
     WindowGame();
     ~WindowGame();
@@ -38,7 +39,11 @@ public:
     {
         SDL_RenderCopy(gRenderer, texture, rect1, rect);
     }
+    void DrawEx(SDL_Texture* texture, SDL_Rect* rect1)
+    {
+        SDL_RenderCopyEx(gRenderer, texture, NULL, rect1, 90.0, NULL, SDL_FLIP_NONE);
+    }
+    TTF_Font* GetFont() const { return gFont; }
     void RendererClear();
 };
-
 #endif

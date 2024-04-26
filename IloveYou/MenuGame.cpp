@@ -917,8 +917,8 @@ void MenuGame::Option()
 
     SDL_Texture* Move1 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/move.png");
     SDL_Texture* Move2 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/move.png");
-    SDL_Rect MoveRect1 = { 651 , 250 + 121 , 20 , 14 };
-    SDL_Rect MoveRect2 = { 651 , 250 + 121 + 46 , 20 , 14 };
+    SDL_Rect MoveRect1 = { 651 , 250 + 118 , 30 , 21 };
+    SDL_Rect MoveRect2 = { 651 , 250 + 118 + 46 , 30 , 21 };
     const int DEST_X1 = OptionTableRect.x;
     const int DEST_Y1 = 250;
     bool Start = true;
@@ -941,38 +941,65 @@ void MenuGame::Option()
     gTypeInput = TypeInputCursor::WAIT_CURSOR;
 
     SDL_Texture* Music1 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1.png");
-    SDL_Texture* Music2 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/2.png");
-    SDL_Texture* Music3 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/3.png");
-    SDL_Texture* Music4 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/4.png");
-    SDL_Texture* Music5 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/5.png");
-    SDL_Texture* Music6 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/6.png");
-    SDL_Texture* Music7 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/7.png");
-    SDL_Texture* Music8 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/8.png");
-    SDL_Texture* Music9 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/9.png");
+    SDL_Texture* Music2 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1.png");
+    SDL_Texture* Music3 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1.png");
+    SDL_Texture* Music4 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1.png");
+    SDL_Texture* Music5 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1.png");
+    SDL_Texture* Music6 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1.png");
+    SDL_Texture* Music7 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1.png");
+    SDL_Texture* Music8 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1.png");
+    SDL_Texture* Music9 = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1.png");
     SDL_Texture* Music1C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1 - Copy.png");
-    SDL_Texture* Music2C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/2 - Copy.png");
-    SDL_Texture* Music3C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/3 - Copy.png");
-    SDL_Texture* Music4C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/4 - Copy.png");
-    SDL_Texture* Music5C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/5 - Copy.png");
-    SDL_Texture* Music6C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/6 - Copy.png");
-    SDL_Texture* Music7C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/7 - Copy.png");
-    SDL_Texture* Music8C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/8 - Copy.png");
-    SDL_Texture* Music9C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/9 - Copy.png");
+    SDL_Texture* Music2C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1 - Copy.png");
+    SDL_Texture* Music3C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1 - Copy.png");
+    SDL_Texture* Music4C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1 - Copy.png");
+    SDL_Texture* Music5C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1 - Copy.png");
+    SDL_Texture* Music6C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1 - Copy.png");
+    SDL_Texture* Music7C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1 - Copy.png");
+    SDL_Texture* Music8C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1 - Copy.png");
+    SDL_Texture* Music9C = IMG_LoadTexture(gWindowGameMenu4.GetRenderer(), "images/option/1 - Copy.png");
 
-    SDL_Rect M1 = {};
-    SDL_Rect M2 = {};
-    SDL_Rect M3 = {};
-    SDL_Rect M4 = {};
-    SDL_Rect M5 = {};
-    SDL_Rect M6 = {};
-    SDL_Rect M7 = {};
-    SDL_Rect M8 = {};
-    SDL_Rect M9 = {};
+    SDL_Rect M1 = {250,100,300,150};
+    SDL_Rect M1T = { 410,140,120,45 };
+    SDL_Rect M2 = { 620,100,300,150 };
+    SDL_Rect M2T = { 780,140,120,45 };
+    SDL_Rect M3 = {620+370,100,300,150};
+    SDL_Rect M3T = { 620 + 370+160,140,120,45 };
+    SDL_Rect M4 = {250,320,300,150};
+    SDL_Rect M4T = { 410,360,120,45 };
+    SDL_Rect M5 = {620 ,320,300,150 };
+    SDL_Rect M5T = { 620+160,360,120,45 };
+    SDL_Rect M6 = { 620 + 370 ,320,300,150};
+    SDL_Rect M6T = { 620 + 370 + 160,360,120,45 };
+    SDL_Rect M7 = {250,540,300,150};
+    SDL_Rect M7T = { 410,580,120,45 };
+    SDL_Rect M8 = { 620 ,540,300,150 };
+    SDL_Rect M8T = {620+160,580,120,45 };
+    SDL_Rect M9 = { 990,540,300,150 };
+    SDL_Rect M9T = {990+160,580,120,45 };
+
+    gFont = TTF_OpenFont("font/DFVN West West Condensed.ttf", 28);
+    if (gFont == NULL) {
+        printf("Failed to load font! SDL_ttf Error: %s\n", TTF_GetError());
+        return;
+    }
+
+    // Màu chữ
+    SDL_Color textColor = { 255, 254, 255, 255 };
+    SDL_Texture* MS1 = LoadTextTexture("MS1", textColor);
+    SDL_Texture* MS2 = LoadTextTexture("MS2", textColor);
+    SDL_Texture* MS3 = LoadTextTexture("MS3", textColor);
+    SDL_Texture* MS4 = LoadTextTexture("MS4", textColor);
+    SDL_Texture* MS5 = LoadTextTexture("MS5", textColor);
+    SDL_Texture* MS6 = LoadTextTexture("MS6", textColor);
+    SDL_Texture* MS7 = LoadTextTexture("MS7", textColor);
+    SDL_Texture* MS8 = LoadTextTexture("MS8", textColor);
+    SDL_Texture* MS9 = LoadTextTexture("MS9", textColor);
+    bool m[10] = { false };
     while (gWindowGameMenu4.IsDone())
     {
         gWindowGameMenu4.RendererClear();
         gWindowGameMenu4.Draw(OptionMenu, &OptionMenuRect);
-
         if (Start)
         {
             for (int i = 0; i <= 500; i += 1)
@@ -1056,18 +1083,68 @@ void MenuGame::Option()
             if (gTypeInput == TypeInputCursor::LEFT_CURSOR)
             {
                 gTypeInput == TypeInputCursor::WAIT_CURSOR;
-                SDL_DestroyTexture(OptionTable);
-                SDL_DestroyTexture(Move1);
-                SDL_DestroyTexture(Move2);
                 ChooseButtonRect.w = 0;
-
             }
         }
-
+        if (ChooseButtonRect.w == 0)
+        {
+            gWindowGameMenu4.RendererClear();
+            gWindowGameMenu4.Draw(OptionMenu, &OptionMenuRect);
+            gWindowGameMenu4.Draw(Music1, &M1);
+            gWindowGameMenu4.Draw(Music2, &M2);
+            gWindowGameMenu4.Draw(Music3, &M3);
+            gWindowGameMenu4.Draw(Music4, &M4);
+            gWindowGameMenu4.Draw(Music5, &M5);
+            gWindowGameMenu4.Draw(Music6, &M6);
+            gWindowGameMenu4.Draw(Music7, &M7);
+            gWindowGameMenu4.Draw(Music8, &M8);
+            gWindowGameMenu4.Draw(Music9, &M9);
+            gWindowGameMenu4.Draw(MS1, &M1T);
+            gWindowGameMenu4.Draw(MS2, &M2T);
+            gWindowGameMenu4.Draw(MS3, &M3T);
+            gWindowGameMenu4.Draw(MS4, &M4T);
+            gWindowGameMenu4.Draw(MS5, &M5T);
+            gWindowGameMenu4.Draw(MS6, &M6T);
+            gWindowGameMenu4.Draw(MS7, &M7T);
+            gWindowGameMenu4.Draw(MS8, &M8T);
+            gWindowGameMenu4.Draw(MS9, &M9T);
+            
+            if (gCursorMenu.IsCursorInRect(&M1))
+            {
+                CursorInput();
+                if (gTypeInput == TypeInputCursor::LEFT_CURSOR && !m[1])
+                {
+                    gTypeInput = TypeInputCursor::WAIT_CURSOR;
+                    m[1] = true;
+                }
+            }
+            if (m[1])
+            {
+                gWindowGameMenu4.RendererClear();
+                gWindowGameMenu4.Draw(OptionMenu, &OptionMenuRect);
+                gWindowGameMenu4.Draw(Music1C, &M1);
+                gWindowGameMenu4.Draw(Music2, &M2);
+                gWindowGameMenu4.Draw(Music3, &M3);
+                gWindowGameMenu4.Draw(Music4, &M4);
+                gWindowGameMenu4.Draw(Music5, &M5);
+                gWindowGameMenu4.Draw(Music6, &M6);
+                gWindowGameMenu4.Draw(Music7, &M7);
+                gWindowGameMenu4.Draw(Music8, &M8);
+                gWindowGameMenu4.Draw(Music9, &M9);
+                gWindowGameMenu4.Draw(MS1, &M1T);
+                gWindowGameMenu4.Draw(MS2, &M2T);
+                gWindowGameMenu4.Draw(MS3, &M3T);
+                gWindowGameMenu4.Draw(MS4, &M4T);
+                gWindowGameMenu4.Draw(MS5, &M5T);
+                gWindowGameMenu4.Draw(MS6, &M6T);
+                gWindowGameMenu4.Draw(MS7, &M7T);
+                gWindowGameMenu4.Draw(MS8, &M8T);
+                gWindowGameMenu4.Draw(MS9, &M9T);
+            }
+        }
         gWindowGameMenu4.EndDraw();
     }
 }
-
 void MenuGame::CursorInput()
 {
     SDL_Event gEvent;
