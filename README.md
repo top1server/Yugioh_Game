@@ -7,7 +7,7 @@
 + Mã sinh viên: 23020025 
 
 + Bài tập lớn: **Game Magic Duel - Đấu bài thế hệ mới** (INT2215_50 - Lập trình nâng cao)
-
++ Đã chấm và được 9.4 ^^
 # Table of content / phụ lục
 - [Description / mô tả game](#description)
   * [Game description and instruction / mô tả game và cách xây dụng](#game-description-and-instruction)
